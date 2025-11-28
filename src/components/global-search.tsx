@@ -99,15 +99,13 @@ export function GlobalSearch() {
 
     setIsLoading(true);
     try {
-      // We will create this API route in the next step.
-      // const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}`);
-      // if (response.ok) {
-      //   const data = await response.json();
-      //   setResults(data);
-      // } else {
-      //   setResults([]);
-      // }
-      setResults([]); // Placeholder
+      const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}`);
+      if (response.ok) {
+        const data = await response.json();
+        setResults(data);
+      } else {
+        setResults([]);
+      }
     } catch (error) {
       console.error('Search fetch error:', error);
       setResults([]);
