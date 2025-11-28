@@ -131,6 +131,12 @@
       "description": "A metal part covered in frost from sub-zero treatment.",
       "imageUrl": "https://images.unsplash.com/photo-1737471859278-755b6147452b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcnlvZ2VuaWMlMjBmcm9zdHxlbnwwfHx8fDE3NjQzNTQzMzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cryogenic frost"
+    },
+    {
+      "id": "qna-playlist",
+      "description": "A question mark icon for a Q&A playlist.",
+      "imageUrl": "https://images.unsplash.com/photo-1584343124536-3988c5208f23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxxJWZfYSUyMGludGVycm9nYXRpb258ZW58MHx8fHwxNzY0NTExNjMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "q a interrogation"
     }
   ]
 }
