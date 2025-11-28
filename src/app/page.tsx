@@ -1,104 +1,162 @@
-import AppHeader from '@/components/app-header';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, BookText, Calculator, FlaskConical, ClipboardCheck, BookOpen, Film } from 'lucide-react';
-import placeholderImages from '@/lib/placeholder-images.json';
-import { CardFooter } from '@/components/ui/card';
 
-const featureCards = [
-  {
-    title: 'Interactive Glossary',
-    description: 'Search our database of heat treatment terms and concepts.',
-    href: '/glossary',
-    icon: BookText,
-  },
-  {
-    title: 'Process Calculator',
-    description: 'Calculate parameters for various steel grades and processes.',
-    href: '/calculator',
-    icon: Calculator,
-  },
-  {
-    title: 'AI Parameter Tool',
-    description: 'Get AI-powered recommendations for optimal heat treatment.',
-    href: '/parameter-tool',
-    icon: FlaskConical,
-  },
-  {
-    title: 'Quiz Zone',
-    description: 'Test your knowledge with our metallurgy quizzes.',
-    href: '/quiz',
-    icon: ClipboardCheck,
-  },
-  {
-    title: 'Learning Hub',
-    description: 'Access curated tutorials and reference materials.',
-    href: '/learning-hub',
-    icon: BookOpen,
-  },
-  {
-    title: 'Video Summaries',
-    description: 'Generate concise summaries of educational videos.',
-    href: '/video-summaries',
-    icon: Film,
-  },
-];
+'use client'
+
+import { AppLayout } from "@/components/app-layout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { navItems } from "@/lib/heat-treatment-data";
+import Link from "next/link";
+import { HomeClientLinks } from "@/components/home-client-links";
+import { CheckCircle } from "lucide-react";
+import { useFirebase } from "@/firebase";
+import { PricingDialog } from "@/components/pricing-dialog";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
+
+type Plan = 'Free' | 'Basic' | 'Standard' | 'Premium' | 'Admin';
 
 export default function Home() {
-  const heroImage = placeholderImages.placeholderImages.find(p => p.id === "hero-image");
+  const features = navItems.filter(
+    (item) => item.href === '/about' || (!item.external && !item.hidden) || item.href === '/fundamental' || item.href === '/hazard-identification'
+  );
+  
+  const { user, isUserLoading } = useFirebase();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  let currentPlan: Plan = 'Free';
+  if (user) {
+      const isAdmin = user.email === 'bijoy98@gmail.com';
+      if (isAdmin) {
+        currentPlan = 'Admin';
+      } else if (user.email?.includes('+premium')) {
+        currentPlan = 'Premium';
+      } else if (user.email === 'bijoysaha98@gmail.com' || user.email?.includes('+standard')) {
+        currentPlan = 'Standard';
+      } else if (user.email === 'spacetime020372@gmail.com' || user.email?.includes('+basic')) {
+        currentPlan = 'Basic';
+      }
+  }
+  
+  const restrictedPathsConfig: Record<string, (Plan)[]> = {
+    '/alloy-database': ['Basic', 'Standard', 'Premium', 'Admin'],
+    '/calculator': ['Standard', 'Premium', 'Admin'],
+    '/hardness-calculator': ['Standard', 'Premium', 'Admin'],
+    '/carburizing': ['Standard', 'Premium', 'Admin'],
+    '/quality-assurance': ['Standard', 'Premium', 'Admin'],
+    '/brazing': ['Premium', 'Admin'],
+    '/plasma-nitriding': ['Standard', 'Premium', 'Admin'],
+    '/course': ['Standard', 'Premium', 'Admin'],
+    '/management-system': ['Standard', 'Premium', 'Admin'],
+  };
+
+  const handleFeatureClick = (e: React.MouseEvent, href: string) => {
+    if (isUserLoading) {
+      e.preventDefault();
+      return;
+    }
+    
+    // Public paths that do not require login
+    if (href === '/about' || href === '/skill-development') {
+      router.push(href);
+      return;
+    }
+
+    const requiredPlans = restrictedPathsConfig[href];
+
+    // If there are no required plans, it's a free feature for logged-in users.
+    if (!requiredPlans) {
+      if (!user) {
+         e.preventDefault();
+         router.push(`/login?redirect=${href}`);
+      } else {
+        router.push(href);
+      }
+      return;
+    }
+
+    if (!user) {
+      e.preventDefault();
+      router.push(`/login?redirect=${href}`);
+      return;
+    }
+    
+    if (!requiredPlans.includes(currentPlan)) {
+      e.preventDefault();
+      router.push('/pricing');
+      toast({
+        title: "Upgrade Required",
+        description: `This feature requires a ${requiredPlans[0]} plan or higher.`,
+        variant: "destructive",
+      });
+    } else {
+      router.push(href);
+    }
+  };
+
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <AppHeader title="Dashboard" />
-      <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-        <section className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-8 shadow-lg">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover"
-              data-ai-hint={heroImage.imageHint}
-              priority
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-8 text-white">
-            <h2 className="text-4xl md:text-6xl font-bold font-headline mb-4 drop-shadow-lg">
-              Master Metallurgy
-            </h2>
-            <p className="text-lg md:text-xl max-w-2xl drop-shadow-md">
-              Your all-in-one guide to heat treatment. Explore interactive tools, AI-powered insights, and a comprehensive learning hub.
-            </p>
-          </div>
+    <AppLayout>
+      <div className="space-y-12">
+        <section className="relative overflow-hidden rounded-lg bg-gradient-to-br from-primary/10 via-background to-background p-8">
+            <div className="relative z-10 space-y-6">
+                <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+                    The Future of Metallurgy is Here
+                </h1>
+                <p className="max-w-3xl text-lg text-muted-foreground text-justify">
+                    Your comprehensive, AI-powered assistant for steel heat treatment. Explore processes, calculate parameters, and get suggestions to perfect your craft.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <HomeClientLinks />
+                </div>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                        <span>AI-Powered Suggestions</span>
+                    </div>
+                     <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                        <span>Comprehensive Alloy Database</span>
+                    </div>
+                     <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-primary" />
+                        <span>Process Calculators</span>
+                    </div>
+                </div>
+            </div>
+             <div className="absolute inset-0 z-0 bg-grid-slate-100/[0.03] bg-[bottom_1px_center] [mask-image:linear-gradient(to_bottom,transparent,white,transparent)]"></div>
         </section>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featureCards.map((feature) => (
-            <Card key={feature.title} className="flex flex-col hover:shadow-lg transition-shadow duration-300">
-              <CardHeader className="flex flex-row items-start gap-4 space-y-0">
-                <div className="p-3 rounded-md bg-primary/10 text-primary">
-                  <feature.icon className="h-6 w-6" />
+        <section>
+          <h2 className="mb-8 text-center text-3xl font-bold tracking-tight">
+            Explore Our Features
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => {
+              const requiredPlans = restrictedPathsConfig[feature.href];
+              const isRestricted = user ? requiredPlans && !requiredPlans.includes(currentPlan) : !!requiredPlans;
+
+              return (
+                <div key={feature.href} onClick={(e) => handleFeatureClick(e, feature.href)} className="cursor-pointer h-full">
+                  <Card className="group h-full transition-all duration-300 hover:border-primary hover:shadow-lg hover:shadow-primary/10">
+                    <CardHeader className="flex flex-row items-center gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                          <feature.icon className="h-6 w-6" />
+                      </div>
+                      <CardTitle className="text-xl">{feature.label}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">
+                        Explore {feature.label.toLowerCase()} and expand your
+                        knowledge.
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
-                <div className="flex-1">
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription className="mt-1">{feature.description}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow" />
-              <CardFooter>
-                <Button asChild className="w-full" variant="secondary">
-                  <Link href={feature.href}>
-                    Go to {feature.title.split(' ')[0]} <ArrowRight className="ml-2" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </main>
-    </div>
+              );
+            })}
+          </div>
+        </section>
+      </div>
+    </AppLayout>
   );
 }
