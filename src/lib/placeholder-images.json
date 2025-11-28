@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "Molten metal being poured in a foundry.",
+      "imageUrl": "https://images.unsplash.com/photo-1754342536490-55d8514f5fbc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb2x0ZW4lMjBtZXRhbHxlbnwwfHx8fDE3NjQzMzQxNjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "molten metal"
+    },
+    {
+      "id": "tutorial-1",
+      "description": "Abstract image for a heat treatment tutorial.",
+      "imageUrl": "https://images.unsplash.com/photo-1474674556023-efef886fa147?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdGVlbCUyMGluZHVzdHJ5fGVufDB8fHx8MTc2NDMzNDE2N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel industry"
+    },
+    {
+      "id": "tutorial-2",
+      "description": "Abstract image for a metallurgy textbook.",
+      "imageUrl": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtZXRhbCUyMHRleHR1cmV8ZW58MHx8fHwxNzY0Mjc1NzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal texture"
+    },
+    {
+      "id": "tutorial-3",
+      "description": "Abstract image for a video on defects.",
+      "imageUrl": "https://images.unsplash.com/photo-1718824331840-399943ff5c1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnZWFycyUyMG1hY2hpbmV8ZW58MHx8fHwxNzY0MzE2NDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "gears machine"
+    }
+  ]
 }
