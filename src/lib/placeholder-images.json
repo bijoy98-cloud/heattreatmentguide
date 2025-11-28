@@ -23,6 +23,114 @@
       "description": "Abstract image for a video on defects.",
       "imageUrl": "https://images.unsplash.com/photo-1718824331840-399943ff5c1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnZWFycyUyMG1hY2hpbmV8ZW58MHx8fHwxNzY0MzE2NDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "gears machine"
+    },
+    {
+      "id": "phase-diagram",
+      "description": "Abstract image representing a phase diagram.",
+      "imageUrl": "https://images.unsplash.com/photo-1707157284454-553ef0a4ed0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGFydCUyMGRpYWdyYW18ZW58MHx8fHwxNzY0MzEwMTc5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chart diagram"
+    },
+    {
+      "id": "heat-treatment-intro",
+      "description": "Glowing steel for heat treatment intro.",
+      "imageUrl": "https://images.unsplash.com/photo-1650025326065-ab23c900522a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnbG93aW5nJTIwc3RlZWx8ZW58MHx8fHwxNzY0MzU0MzM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glowing steel"
+    },
+    {
+      "id": "heat-treatment-properties",
+      "description": "Image showing metal microstructure.",
+      "imageUrl": "https://images.unsplash.com/photo-1723117509275-552bc072e117?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZXRhbCUyMG1pY3Jvc3RydWN0dXJlfGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal microstructure"
+    },
+    {
+      "id": "heat-treatment-techniques",
+      "description": "Various industrial tools.",
+      "imageUrl": "https://images.unsplash.com/photo-1572882724878-e17d310e6a74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW5kdXN0cmlhbCUyMHRvb2xzfGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "industrial tools"
+    },
+    {
+      "id": "mastering-heat-treatment",
+      "description": "A blacksmith at work.",
+      "imageUrl": "https://images.unsplash.com/photo-1752440811753-1dab9c570bee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxibGFja3NtaXRoJTIwZm9yZ2V8ZW58MHx8fHwxNzY0MzU0MzM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "blacksmith forge"
+    },
+    {
+      "id": "metallurgy-basics",
+      "description": "Microscopic view of metal grains.",
+      "imageUrl": "https://images.unsplash.com/photo-1644116713079-db356beeedfb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZXRhbCUyMGdyYWluc3xlbnwwfHx8fDE3NjQzNTQzMzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal grains"
+    },
+    {
+      "id": "annealing-secrets",
+      "description": "A furnace with a glowing interior.",
+      "imageUrl": "https://images.unsplash.com/photo-1712223223063-3df468914e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnbG93aW5nJTIwZnVybmFjZXxlbnwwfHx8fDE3NjQzNTQzMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glowing furnace"
+    },
+    {
+      "id": "heat-treatment-ageing",
+      "description": "Close up of a clock or watch gears.",
+      "imageUrl": "https://images.unsplash.com/photo-1667752715523-35b8f8a592fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbG9jayUyMGdlYXJzfGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clock gears"
+    },
+    {
+      "id": "tempering-importance",
+      "description": "Colored tempering oxides on steel.",
+      "imageUrl": "https://images.unsplash.com/photo-1624382497193-de32b368de64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdGVlbCUyMHRlbXBlcnxlbnwwfHx8fDE3NjQzNTQzMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "steel temper"
+    },
+    {
+      "id": "decarburization-vs-carburization",
+      "description": "Abstract split image representing two processes.",
+      "imageUrl": "https://images.unsplash.com/photo-1764209284392-1f0497f1d63a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhYnN0cmFjdCUyMGNvbXBhcmlzb258ZW58MHx8fHwxNzY0MzU0MzM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract comparison"
+    },
+    {
+      "id": "induction-foundry",
+      "description": "An induction heating coil glowing red hot.",
+      "imageUrl": "https://images.unsplash.com/photo-1725916631452-b411a5991fce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxpbmR1Y3Rpb24lMjBjb2lsfGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "induction coil"
+    },
+    {
+      "id": "plasma-nitriding-intro",
+      "description": "Purple plasma glow in a vacuum chamber.",
+      "imageUrl": "https://images.unsplash.com/photo-1665855016165-2012bb8de0cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwbGFzbWElMjBnbG93fGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plasma glow"
+    },
+    {
+      "id": "forging-vs-heat-treatment",
+      "description": "A hammer striking hot metal.",
+      "imageUrl": "https://images.unsplash.com/photo-1739172205233-72f77f55b8df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxmb3JnaW5nJTIwbWV0YWx8ZW58MHx8fHwxNzY0MzU0MzM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "forging metal"
+    },
+    {
+      "id": "die-casting-dies",
+      "description": "Intricate metal molds for die casting.",
+      "imageUrl": "https://images.unsplash.com/photo-1755631784585-425f29f3644d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtZXRhbCUyMG1vbGRzfGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal molds"
+    },
+    {
+      "id": "powder-metallurgy",
+      "description": "Fine metal powder in a container.",
+      "imageUrl": "https://images.unsplash.com/photo-1675274082113-c3cc3a0bbc4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtZXRhbCUyMHBvd2RlcnxlbnwwfHx8fDE3NjQzNTQzMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal powder"
+    },
+    {
+      "id": "laser-welding",
+      "description": "A high-power laser beam welding metal.",
+      "imageUrl": "https://images.unsplash.com/photo-1657897392470-2fbc02127098?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYXNlciUyMHdlbGRpbmd8ZW58MHx8fHwxNzY0MzU0MzM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "laser welding"
+    },
+    {
+      "id": "heat-treatment-tips",
+      "description": "A skilled worker inspecting a metal part.",
+      "imageUrl": "https://images.unsplash.com/photo-1671558376677-981c57e7d23d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWV0YWwlMjBpbnNwZWN0aW9ufGVufDB8fHx8MTc2NDM1NDMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "metal inspection"
+    },
+    {
+      "id": "cryogenic-treatment",
+      "description": "A metal part covered in frost from sub-zero treatment.",
+      "imageUrl": "https://images.unsplash.com/photo-1737471859278-755b6147452b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcnlvZ2VuaWMlMjBmcm9zdHxlbnwwfHx8fDE3NjQzNTQzMzV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cryogenic frost"
     }
   ]
 }
