@@ -127,12 +127,10 @@ export const navItems: NavItem[] = [
     label: "Process Explanations", 
     icon: BookOpen,
     description: "Detailed guides on common heat treatment processes.",
-    children: [
-      { href: "/carburizing", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
-      { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
-      { href: "/brazing", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
-    ]
   },
+  { href: "/carburizing", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
+  { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
+  { href: "/brazing", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
   {
     href: "/industrial-tools",
     label: "Tools & References",
