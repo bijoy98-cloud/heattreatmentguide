@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Cpu } from "lucide-react";
 
 export default function AIFeaturesPage() {
-  const aiFeatures = navItems.filter(item => 
-    item.parent === 'ai-features'
-  );
+  // Find the AI Features parent item to get its children
+  const aiFeaturesParent = navItems.find(item => item.href === '/ai-features');
+  const aiFeatures = aiFeaturesParent?.children || [];
 
   return (
     <AppLayout>
