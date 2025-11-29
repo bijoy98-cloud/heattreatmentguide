@@ -8,9 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CheckCircle, ShieldAlert, Glasses, ListChecks, ShieldCheck, HardHat, Shield } from "lucide-react";
+import { CheckCircle, ShieldAlert, Glasses, ListChecks, ShieldCheck, HardHat, Shield, Youtube } from "lucide-react";
 import Link from "next/link";
 import { AppLayout } from "@/components/app-layout";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const safetyTopics = [
   {
@@ -143,6 +145,7 @@ const complianceItems = [
 ]
 
 export default function IndustrialSafetyPage() {
+  const oshaVideo = PlaceHolderImages.find(img => img.id === 'phase-diagram');
   return (
     <AppLayout>
     <div className="space-y-8">
@@ -276,9 +279,36 @@ export default function IndustrialSafetyPage() {
         </div>
       </div>
 
+      <Card>
+        <CardHeader>
+            <CardTitle className="flex items-center gap-3">
+                <Youtube className="h-6 w-6 text-primary" />
+                OSHA Safety Guidelines
+            </CardTitle>
+            <CardDescription>
+                Watch a video to learn more about OSHA standards.
+            </CardDescription>
+        </CardHeader>
+        <CardContent>
+            <a href="https://youtu.be/_kTrQvFO0AA" target="_blank" rel="noopener noreferrer" className="block relative aspect-video rounded-lg overflow-hidden border hover:shadow-lg transition-shadow">
+              {oshaVideo ? (
+                    <Image
+                        src={oshaVideo.imageUrl}
+                        alt={oshaVideo.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={oshaVideo.imageHint}
+                    />
+                ) : (
+                    <div className="text-sm text-center text-primary font-semibold p-4 border border-dashed rounded-lg hover:bg-muted h-full flex items-center justify-center">
+                        Go to YouTube: OSHA Safety Guidelines
+                    </div>
+                )}
+            </a>
+        </CardContent>
+      </Card>
+
     </div>
     </AppLayout>
   );
 }
-
-    
