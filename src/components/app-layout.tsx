@@ -1,10 +1,9 @@
 
-
 'use client';
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { navItems, type NavItem } from '@/lib/heat-treatment-data';
+import { navItems } from '@/lib/heat-treatment-data';
 import {
   Sidebar,
   SidebarContent,
@@ -16,9 +15,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
   SidebarFooter,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 import { Button } from './ui/button';
 import {
@@ -34,7 +30,6 @@ import {
   Trash2,
   Settings,
   ArrowUp,
-  ChevronDown,
 } from 'lucide-react';
 import { useFirebase } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -58,9 +53,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useCart } from '@/hooks/use-cart';
 import { isAdminUser } from '@/lib/auth';
 import { useState, useEffect } from 'react';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 type Plan = 'Free' | 'Basic' | 'Standard' | 'Premium' | 'Admin';
 
@@ -111,7 +106,7 @@ function UserProfileButton() {
               src={user.photoURL ?? ''}
               alt={user.displayName ?? 'User'}
             />
-            <AvatarFallback className="bg-primary text-primary-foreground">
+            <AvatarFallback className="bg-primary/80 text-white">
               {user.email?.charAt(0).toUpperCase() ?? 'U'}
             </AvatarFallback>
           </Avatar>
@@ -270,7 +265,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const publicPaths = ['/login', '/about', '/skill-development'];
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
-    if (href === '/' || publicPaths.includes(href) || href.startsWith('/ai-features') || href.startsWith('/industrial-safety')) {
+    if (href === '/' || publicPaths.includes(href) || href === '/skill-development') {
       return;
     }
 
@@ -293,12 +288,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const isRestricted = (href: string) => {
-      const requiredPlans = restrictedPaths[href];
-      if (!user) return !!requiredPlans;
-      return requiredPlans && !requiredPlans.includes(currentPlan);
-  };
-  
   return (
     <SidebarProvider>
       <Sidebar>
@@ -306,48 +295,20 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             {navItems
-              .filter(item => !item.hidden || (item.href === '/admin' && isAdmin))
-              .map((item) => (
-                item.children ? (
-                  <SidebarMenuSub key={item.href}>
-                    <Collapsible>
-                      <CollapsibleTrigger asChild>
-                        <SidebarMenuButton
-                          className="justify-between w-full"
-                          tooltip={{ children: item.label }}
-                        >
-                           <div className="flex items-center gap-2">
-                             <item.icon className="shrink-0" />
-                            <span>{item.label}</span>
-                          </div>
-                          <ChevronDown className="h-4 w-4" />
-                        </SidebarMenuButton>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {item.children.filter(child => !child.hidden || (child.href === '/admin' && isAdmin)).map((child) => (
-                            <SidebarMenuSubItem key={child.href}>
-                              <Link
-                                href={child.href}
-                                className="block w-full"
-                                onClick={(e) => handleLinkClick(e, child.href)}
-                              >
-                                <SidebarMenuSubButton
-                                  isActive={!isRestricted(child.href) && pathname === child.href}
-                                  className={cn(isRestricted(child.href) && "text-muted-foreground/50 hover:text-muted-foreground/60")}
-                                >
-                                  <child.icon className="shrink-0" />
-                                  <span>{child.label}</span>
-                                  {isRestricted(child.href) && <Lock className="ml-auto h-3 w-3" />}
-                                </SidebarMenuSubButton>
-                              </Link>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  </SidebarMenuSub>
-                ) : (
+              .filter((item) => !item.hidden)
+              .map((item) => {
+                
+                let isVisible = true;
+                if (item.href === '/admin') {
+                    isVisible = isAdmin ?? false;
+                }
+
+                const requiredPlans = restrictedPaths[item.href];
+                const isRestricted = user && requiredPlans && !requiredPlans.includes(currentPlan);
+
+                if (!isVisible) return null;
+
+                return (
                   <SidebarMenuItem key={item.href}>
                     {item.external ? (
                       <a
@@ -369,25 +330,27 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                       <Link
                         href={item.href}
                         className="block w-full"
-                        onClick={(e) => handleLinkClick(e, item.href)}
+                        onClick={(e) => {
+                           handleLinkClick(e, item.href);
+                        }}
                       >
                         <SidebarMenuButton
-                          isActive={!isRestricted(item.href) && pathname === item.href}
+                          isActive={!isRestricted && pathname === item.href}
                           className={cn(
                             "justify-start w-full",
-                            isRestricted(item.href) && "text-muted-foreground/50 hover:text-muted-foreground/60"
+                            isRestricted && "text-muted-foreground/50 hover:text-muted-foreground/60"
                           )}
                           tooltip={{ children: item.label }}
                         >
                           <item.icon className="shrink-0" />
                           <span>{item.label}</span>
-                          {isRestricted(item.href) && <Lock className="ml-auto h-3 w-3" />}
+                          {isRestricted && <Lock className="ml-auto h-3 w-3" />}
                         </SidebarMenuButton>
                       </Link>
                     )}
                   </SidebarMenuItem>
-                )
-            ))}
+                );
+              })}
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
