@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/heat-treatment-data";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
 
@@ -439,4 +439,5 @@ export function ManagementSystem() {
   );
 }
 
+    
     
