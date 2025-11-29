@@ -299,7 +299,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             {mainNavItems
-              .filter((item) => !item.hidden || (item.href === '/admin' && isAdmin))
+              .filter((item) => !item.hidden)
               .map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isParentActive = pathname === item.href || (hasChildren && item.children.some(child => pathname === child.href));
