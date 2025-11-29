@@ -76,6 +76,7 @@ export type NavItem = {
   icon: LucideIcon;
   external?: boolean;
   hidden?: boolean;
+  description?: string;
 };
 
 export const youtubeLink = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
@@ -83,11 +84,11 @@ export const youtubeLink = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 export const navItems: NavItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/dashboard", label: "Dashboard", icon: Home, hidden: true },
-  { href: "/ai-features", label: "AI Features", icon: Cpu },
-  { href: "/ask-gemini", label: "Live AI Chat", icon: MessageSquare, hidden: true },
-  { href: "/suggestion", label: "AI Material Suggestion", icon: Sparkles, hidden: true },
-  { href: "/fault-diagnosis", label: "AI Fault Diagnosis", icon: Wrench, hidden: true },
-  { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, hidden: true },
+  { href: "/ai-features", label: "AI Features", icon: Cpu, description: "A suite of AI-powered tools for metallurgy analysis.", hidden: false },
+  { href: "/ask-gemini", label: "Live AI Chat", icon: MessageSquare, hidden: false, description: "Chat with a virtual metallurgist for instant answers." },
+  { href: "/suggestion", label: "AI Material Suggestion", icon: Sparkles, hidden: false, description: "Get AI-based recommendations for materials and heat treatments." },
+  { href: "/fault-diagnosis", label: "AI Fault Diagnosis", icon: Wrench, hidden: false, description: "Diagnose heat treatment faults with the help of AI." },
+  { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, hidden: false, description: "Analyze microstructures and defects from images." },
   { href: "/industrial-safety", label: "Industrial Safety", icon: ShieldAlert },
   { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks, hidden: true },
   { href: "/alloy-database", label: "Alloy Database", icon: Database },
@@ -228,7 +229,7 @@ export const processesInfo: Process[] = [
       {
         title: "Controlled Soaking",
         description:
-          "Hold for just enough time to achieve chemical homogeneity in the austenite without allowing significant grain growth. This is critical for high-alloy tool steels.",
+          "Hold for just enough time to achieve chemical homogeneity in the austenite without allowing for significant grain growth. This is critical for high-alloy tool steels.",
       },
       {
         title: "Quenching",
@@ -2000,7 +2001,7 @@ export const quizQuestions = [
       "Microstructure (Phases)",
       "Time",
     ],
-    answer: "Microstructure (Phases)",
+answer: "Microstructure (Phases)",
   },
   {
     question: "What is the main advantage of martempering (marquenching)?",
@@ -2097,6 +2098,5 @@ export const brazingData = [
         notes: "Special flux (AWS FB1-A) required. Temperature control is critical as it's close to the base metal melting point."
     }
 ];
-
 
     
