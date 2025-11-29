@@ -132,9 +132,9 @@ export function AlloyDatabase() {
                 ))}
               </TableBody>
              {filteredSteels.length === 0 && (
-                <div className="text-center p-8 text-muted-foreground">
+                <caption className="text-center p-8 text-muted-foreground">
                     No matching steel grades found for "{searchTerm}".
-                </div>
+                </caption>
              )}
           </div>
         </CardContent>
