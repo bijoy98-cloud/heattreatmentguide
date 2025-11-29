@@ -302,25 +302,38 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
               .filter((item) => !item.hidden || (item.href === '/admin' && isAdmin))
               .map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
-                const isParentActive = hasChildren && item.children.some(child => pathname === child.href);
+                const isParentActive = pathname === item.href || (hasChildren && item.children.some(child => pathname === child.href));
 
                 if (hasChildren) {
                   return (
-                    <Collapsible key={item.href} asChild>
+                    <Collapsible key={item.href} asChild open={isParentActive}>
                       <SidebarMenuItem>
-                        <CollapsibleTrigger asChild>
-                           <SidebarMenuButton
-                            isActive={isParentActive}
-                            className='justify-between w-full'
-                            tooltip={{ children: item.label }}
-                           >
-                            <div className="flex items-center gap-2">
+                        <div className="flex items-center w-full">
+                          <Link
+                            href={item.href}
+                            className="flex-grow"
+                            onClick={(e) => handleLinkClick(e, item.href)}
+                          >
+                            <SidebarMenuButton
+                              isActive={pathname === item.href}
+                              className='justify-start w-full rounded-r-none'
+                              tooltip={{ children: item.label }}
+                            >
                               <item.icon className="shrink-0" />
                               <span>{item.label}</span>
-                            </div>
-                            <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
-                          </SidebarMenuButton>
-                        </CollapsibleTrigger>
+                            </SidebarMenuButton>
+                          </Link>
+                          <CollapsibleTrigger asChild>
+                             <SidebarMenuButton
+                              className='justify-center w-10 rounded-l-none p-0'
+                              isActive={isParentActive && pathname !== item.href}
+                              aria-label={`Toggle ${item.label} submenu`}
+                             >
+                              <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+                            </SidebarMenuButton>
+                          </CollapsibleTrigger>
+                        </div>
+
                         <CollapsibleContent asChild>
                           <div className="space-y-1 pl-6 pt-1">
                             {item.children?.map(child => {
