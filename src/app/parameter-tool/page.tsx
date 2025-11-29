@@ -88,31 +88,31 @@ export default function ParameterToolPage() {
           <CardContent>
             {state && state.temperatureRange ? (
               <div className="space-y-4">
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                  <Thermometer className="w-5 h-5 text-destructive mt-1" />
+                <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
+                  <Thermometer className="w-6 h-6 text-destructive" />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Temperature Range</p>
-                    <p className="text-lg">{state.temperatureRange}</p>
+                    <p className="text-sm font-semibold">Temperature Range</p>
+                    <p className="text-lg font-bold">{state.temperatureRange}</p>
                   </div>
                 </div>
-                 <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                  <Timer className="w-5 h-5 text-primary mt-1" />
+                 <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
+                  <Timer className="w-6 h-6 text-primary" />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Soaking Time</p>
-                    <p className="text-lg">{state.soakingTime}</p>
+                    <p className="text-sm font-semibold">Soaking Time</p>
+                    <p className="text-lg font-bold">{state.soakingTime}</p>
                   </div>
                 </div>
-                 <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
-                  <Wind className="w-5 h-5 text-blue-500 mt-1" />
+                 <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
+                  <Wind className="w-6 h-6 text-blue-500" />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Cooling Method</p>
-                    <p className="text-lg">{state.coolingMethod}</p>
+                    <p className="text-sm font-semibold">Cooling Method</p>
+                    <p className="text-lg font-bold">{state.coolingMethod}</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
-                  <CheckCircle className="w-5 h-5 text-primary mt-1" />
+                <div className="flex items-start gap-4 p-3 rounded-lg bg-primary/10 border border-primary/20">
+                  <CheckCircle className="w-6 h-6 text-primary mt-1" />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold mb-1">Expected Result</p>
+                    <p className="text-sm font-semibold">Expected Result</p>
                     <p className="text-lg font-bold">{state.expectedResult}</p>
                   </div>
                 </div>
