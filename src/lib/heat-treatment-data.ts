@@ -102,6 +102,7 @@ export const navItems: NavItem[] = [
     href: "/industrial-safety", 
     label: "Industrial Safety", 
     icon: ShieldAlert,
+    description: "Guides and tools to maintain a safe working environment.",
     children: [
         { href: "/hazard-identification", parent: "industrial-safety", label: "Hazard ID Tool", icon: ListChecks, description: "An interactive checklist to identify and mitigate potential hazards." },
         { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment." },
@@ -113,10 +114,10 @@ export const navItems: NavItem[] = [
     icon: Atom,
     description: "Explore the core concepts of metallurgy.",
     children: [
-        { href: "/alloy-database", parent: "fundamental", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
         { href: "/glossary", parent: "fundamental", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
     ]
   },
+    { href: "/alloy-database", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
   {
     href: "/calculators",
     label: "Calculators",
@@ -131,6 +132,7 @@ export const navItems: NavItem[] = [
     href: "/processes", 
     label: "Process Explanations", 
     icon: BookOpen,
+    description: "Detailed guides on common heat treatment processes.",
     children: [
         { href: "/carburizing", parent: "processes", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
         { href: "/plasma-nitriding", parent: "processes", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
@@ -148,7 +150,6 @@ export const navItems: NavItem[] = [
     label: "Quality Assurance",
     icon: BadgeCheck,
     description: "Learn about testing, analysis, and compliance in heat treatment.",
-    hidden: false
   },
   { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart, hidden: true },
   {
@@ -156,7 +157,6 @@ export const navItems: NavItem[] = [
     label: "Management System",
     icon: GanttChartSquare,
     description: "Explore the management systems and documentation standards.",
-    hidden: false
   },
   { href: "/community", label: "Community Network", icon: Users },
   { href: "/skill-development", label: "Skill Development", icon: GraduationCap },
@@ -2394,5 +2394,3 @@ export const courseLevels = [
     ],
   },
 ];
-
-    
