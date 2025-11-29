@@ -26,7 +26,6 @@ import { Skeleton } from "./ui/skeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, Label as RechartsLabel } from 'recharts';
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
-import { recommendProcess } from "@/ai/flows/recommend-process-flow";
 
 type ProcessStep = {
     name: string;
@@ -207,27 +206,39 @@ export function HardnessBasedCalculator() {
     setShowError(false);
 
     const formData = new FormData(event.currentTarget);
-    
-    const steelType = formData.get('steelType') as string;
-    const requiredProperties = formData.get('requiredProperties') as string;
-    const partThickness = parseFloat(formData.get('partThickness') as string);
-    const process = formData.get('process') as string;
+    const formValues = Object.fromEntries(formData.entries());
+
+    const body = {
+        steelType: formValues.steelType,
+        requiredProperties: formValues.requiredProperties,
+        partThickness: parseFloat(formValues.partThickness as string),
+        process: formValues.process
+    };
 
     try {
-      const result = await recommendProcess({
-        steelType,
-        requiredProperties,
-        partThickness,
-        process
+      const response = await fetch('/api/recommend-process', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
       });
 
-      // Validate that the graph data is sufficient to be rendered
-      if (result.graphData && result.graphData.length >= 2) {
-        setState({ message: "Success", data: result, errors: null });
-      } else {
-        // If data is invalid, show a specific error instead of crashing
+      const result = await response.json();
+
+      if (!response.ok) {
+        setState({ message: result.message, errors: result.errors, data: null });
+        toast({
+          variant: 'destructive',
+          title: 'Error',
+          description: result.message || 'An error occurred.',
+        });
         setShowError(true);
-        setState({ message: "Invalid data from AI", data: null, errors: null });
+      } else {
+        if (result.data?.graphData && result.data.graphData.length >= 2) {
+          setState({ message: result.message, data: result.data, errors: null });
+        } else {
+          setShowError(true);
+          setState({ message: "Invalid data from AI", data: null, errors: null });
+        }
       }
     } catch (error) {
       const errorMessage = "An unexpected error occurred. Please try again.";
@@ -364,3 +375,5 @@ export function HardnessBasedCalculator() {
     </div>
   )
 }
+
+    
