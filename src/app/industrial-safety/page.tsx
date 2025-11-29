@@ -280,3 +280,5 @@ export default function IndustrialSafetyPage() {
     </AppLayout>
   );
 }
+
+    
