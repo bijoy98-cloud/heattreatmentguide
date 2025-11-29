@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { recommendHeatTreatmentParameters } from '@/ai/flows/recommend-heat-treatment-parameters';
-import { Loader2, Wand2 } from 'lucide-react';
+import { Loader2, Wand2, Thermometer, Timer, Wind, CheckCircle } from 'lucide-react';
 import { AppLayout } from '@/components/app-layout';
 
 const initialState = {
@@ -87,22 +87,34 @@ export default function ParameterToolPage() {
           </CardHeader>
           <CardContent>
             {state && state.temperatureRange ? (
-              <div className="space-y-5">
-                <div>
-                  <h3 className="font-semibold text-card-foreground">Temperature Range</h3>
-                  <p className="text-muted-foreground">{state.temperatureRange}</p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                  <Thermometer className="w-5 h-5 text-destructive mt-1" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold mb-1">Temperature Range</p>
+                    <p className="text-lg">{state.temperatureRange}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-card-foreground">Soaking Time</h3>
-                  <p className="text-muted-foreground">{state.soakingTime}</p>
+                 <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                  <Timer className="w-5 h-5 text-primary mt-1" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold mb-1">Soaking Time</p>
+                    <p className="text-lg">{state.soakingTime}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-card-foreground">Cooling Method</h3>
-                  <p className="text-muted-foreground">{state.coolingMethod}</p>
+                 <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50">
+                  <Wind className="w-5 h-5 text-blue-500 mt-1" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold mb-1">Cooling Method</p>
+                    <p className="text-lg">{state.coolingMethod}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-card-foreground">Expected Result</h3>
-                  <p className="text-muted-foreground">{state.expectedResult}</p>
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
+                  <CheckCircle className="w-5 h-5 text-primary mt-1" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold mb-1">Expected Result</p>
+                    <p className="text-lg font-bold">{state.expectedResult}</p>
+                  </div>
                 </div>
               </div>
             ) : (
