@@ -316,8 +316,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
                 if (hasChildren) {
                   return (
-                    <Collapsible key={item.href} asChild open={isParentActive}>
-                      <SidebarMenuItem>
+                    <SidebarMenuItem key={item.href}>
+                      <Collapsible open={isParentActive}>
                         <div className="flex items-center w-full">
                           <Link
                             href={item.href}
@@ -374,8 +374,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                             })}
                           </div>
                         </CollapsibleContent>
-                      </SidebarMenuItem>
-                    </Collapsible>
+                      </Collapsible>
+                    </SidebarMenuItem>
                   );
                 }
 
