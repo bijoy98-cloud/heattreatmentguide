@@ -104,6 +104,7 @@ export const navItems: NavItem[] = [
     icon: ShieldAlert,
     children: [
         { href: "/hazard-identification", parent: "industrial-safety", label: "Hazard ID Tool", icon: ListChecks, description: "An interactive checklist to identify and mitigate potential hazards." },
+        { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment." },
     ]
   },
   {
