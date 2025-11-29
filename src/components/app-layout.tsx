@@ -173,12 +173,6 @@ function UserProfileButton() {
               <span>My Orders</span>
             </Link>
           </DropdownMenuItem>
-           <DropdownMenuItem asChild>
-            <Link href="/billing">
-              <Briefcase className="mr-2 h-4 w-4" />
-              <span>Manage Billing</span>
-            </Link>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
         
         <DropdownMenuSeparator />
