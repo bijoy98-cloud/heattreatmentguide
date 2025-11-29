@@ -229,86 +229,6 @@ function ScrollToTopButton() {
     );
 }
 
-function SidebarNavItem({ item, handleLinkClick }: { item: NavItem, handleLinkClick: (e: React.MouseEvent, href: string) => void }) {
-  const pathname = usePathname();
-  const { user } = useFirebase();
-
-  let currentPlan: Plan = 'Free';
-  if (user) {
-    if (isAdminUser(user)) {
-      currentPlan = 'Admin';
-    } else if (user.email?.includes('+premium')) {
-      currentPlan = 'Premium';
-    } else if (user.email === 'bijoysaha98@gmail.com' || user.email?.includes('+standard')) {
-      currentPlan = 'Standard';
-    } else if (user.email === 'spacetime020372@gmail.com' || user.email?.includes('+basic')) {
-      currentPlan = 'Basic';
-    } else {
-      currentPlan = 'Free';
-    }
-  }
-
-  const restrictedPaths: Record<string, (Plan)[]> = {
-    '/alloy-database': ['Basic', 'Standard', 'Premium', 'Admin'],
-    '/calculator': ['Standard', 'Premium', 'Admin'],
-    '/hardness-calculator': ['Standard', 'Premium', 'Admin'],
-    '/carburizing': ['Standard', 'Premium', 'Admin'],
-    '/quality-assurance': ['Standard', 'Premium', 'Admin'],
-    '/brazing': ['Premium', 'Admin'],
-    '/plasma-nitriding': ['Standard', 'Premium', 'Admin'],
-    '/course': ['Standard', 'Premium', 'Admin'],
-    '/management-system': ['Standard', 'Premium', 'Admin'],
-  };
-  
-  const isRestricted = (href: string) => {
-      const requiredPlans = restrictedPaths[href];
-      if (!user) return !!requiredPlans;
-      return requiredPlans && !requiredPlans.includes(currentPlan);
-  };
-  
-  return (
-     <SidebarMenuItem key={item.href}>
-      {item.external ? (
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full"
-        >
-          <SidebarMenuButton
-            className="justify-start w-full"
-            tooltip={{ children: item.label }}
-          >
-            <item.icon className="shrink-0" />
-            <span>{item.label}</span>
-            <ExternalLink className="ml-auto h-3 w-3" />
-          </SidebarMenuButton>
-        </a>
-      ) : (
-        <Link
-          href={item.href}
-          className="block w-full"
-          onClick={(e) => handleLinkClick(e, item.href)}
-        >
-          <SidebarMenuButton
-            isActive={!isRestricted(item.href) && pathname === item.href}
-            className={cn(
-              "justify-start w-full",
-              isRestricted(item.href) && "text-muted-foreground/50 hover:text-muted-foreground/60"
-            )}
-            tooltip={{ children: item.label }}
-          >
-            <item.icon className="shrink-0" />
-            <span>{item.label}</span>
-            {isRestricted(item.href) && <Lock className="ml-auto h-3 w-3" />}
-          </SidebarMenuButton>
-        </Link>
-      )}
-    </SidebarMenuItem>
-  );
-}
-
-
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { user, isUserLoading } = useFirebase();
@@ -373,26 +293,101 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const flattenedNavItems = navItems.flatMap(item => {
-    if (item.children) {
-      // If an item has children, we return the children array.
-      // We filter out any hidden children.
-      return item.children.filter(child => !child.hidden || (child.href === '/admin' && isAdmin));
-    }
-    // If an item has no children, we return it in an array so flatMap can process it.
-    return [item];
-  }).filter(item => !item.hidden || (item.href === '/admin' && isAdmin));
-
+  const isRestricted = (href: string) => {
+      const requiredPlans = restrictedPaths[href];
+      if (!user) return !!requiredPlans;
+      return requiredPlans && !requiredPlans.includes(currentPlan);
+  };
+  
   return (
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader></SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {flattenedNavItems
+            {navItems
+              .filter(item => !item.hidden || (item.href === '/admin' && isAdmin))
               .map((item) => (
-                 <SidebarNavItem key={item.href} item={item} handleLinkClick={handleLinkClick} />
-              ))}
+                item.children ? (
+                  <SidebarMenuSub key={item.href}>
+                    <Collapsible>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          className="justify-between w-full"
+                          tooltip={{ children: item.label }}
+                        >
+                           <div className="flex items-center gap-2">
+                             <item.icon className="shrink-0" />
+                            <span>{item.label}</span>
+                          </div>
+                          <ChevronDown className="h-4 w-4" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.children.filter(child => !child.hidden || (child.href === '/admin' && isAdmin)).map((child) => (
+                            <SidebarMenuSubItem key={child.href}>
+                              <Link
+                                href={child.href}
+                                className="block w-full"
+                                onClick={(e) => handleLinkClick(e, child.href)}
+                              >
+                                <SidebarMenuSubButton
+                                  isActive={!isRestricted(child.href) && pathname === child.href}
+                                  className={cn(isRestricted(child.href) && "text-muted-foreground/50 hover:text-muted-foreground/60")}
+                                >
+                                  <child.icon className="shrink-0" />
+                                  <span>{child.label}</span>
+                                  {isRestricted(child.href) && <Lock className="ml-auto h-3 w-3" />}
+                                </SidebarMenuSubButton>
+                              </Link>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  </SidebarMenuSub>
+                ) : (
+                  <SidebarMenuItem key={item.href}>
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full"
+                      >
+                        <SidebarMenuButton
+                          className="justify-start w-full"
+                          tooltip={{ children: item.label }}
+                        >
+                          <item.icon className="shrink-0" />
+                          <span>{item.label}</span>
+                          <ExternalLink className="ml-auto h-3 w-3" />
+                        </SidebarMenuButton>
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block w-full"
+                        onClick={(e) => handleLinkClick(e, item.href)}
+                      >
+                        <SidebarMenuButton
+                          isActive={!isRestricted(item.href) && pathname === item.href}
+                          className={cn(
+                            "justify-start w-full",
+                            isRestricted(item.href) && "text-muted-foreground/50 hover:text-muted-foreground/60"
+                          )}
+                          tooltip={{ children: item.label }}
+                        >
+                          <item.icon className="shrink-0" />
+                          <span>{item.label}</span>
+                          {isRestricted(item.href) && <Lock className="ml-auto h-3 w-3" />}
+                        </SidebarMenuButton>
+                      </Link>
+                    )}
+                  </SidebarMenuItem>
+                )
+            ))}
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
