@@ -18,7 +18,6 @@ import {
   SidebarFooter,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubContent,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 import { Button } from './ui/button';
@@ -232,7 +231,6 @@ function ScrollToTopButton() {
 
 function SidebarNavItem({ item, handleLinkClick }: { item: NavItem, handleLinkClick: (e: React.MouseEvent, href: string) => void }) {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const { user } = useFirebase();
 
   let currentPlan: Plan = 'Free';
@@ -264,45 +262,10 @@ function SidebarNavItem({ item, handleLinkClick }: { item: NavItem, handleLinkCl
   
   const isRestricted = (href: string) => {
       const requiredPlans = restrictedPaths[href];
-      return user && requiredPlans && !requiredPlans.includes(currentPlan);
+      if (!user) return !!requiredPlans;
+      return requiredPlans && !requiredPlans.includes(currentPlan);
   };
   
-  if (item.children && item.children.length > 0) {
-    return (
-      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <CollapsibleTrigger asChild>
-            <SidebarMenuButton
-                variant="ghost"
-                className="justify-start w-full"
-                tooltip={{ children: item.label }}
-                 onClick={(e) => {
-                    if (item.href) handleLinkClick(e, item.href)
-                }}
-            >
-                <item.icon className="shrink-0" />
-                <span>{item.label}</span>
-                <ChevronDown className={cn("ml-auto h-4 w-4 transition-transform", isOpen && "rotate-180")} />
-            </SidebarMenuButton>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
-            <SidebarMenuSub>
-                {item.children.map(child => (
-                     <SidebarMenuSubItem key={child.href}>
-                         <Link href={child.href} className="block w-full" onClick={(e) => handleLinkClick(e, child.href)}>
-                            <SidebarMenuSubButton isActive={pathname === child.href} className={cn(isRestricted(child.href) && "text-muted-foreground/50 hover:text-muted-foreground/60")}>
-                                <child.icon className="shrink-0" />
-                                <span>{child.label}</span>
-                                {isRestricted(child.href) && <Lock className="ml-auto h-3 w-3" />}
-                            </SidebarMenuSubButton>
-                        </Link>
-                    </SidebarMenuSubItem>
-                ))}
-            </SidebarMenuSub>
-        </CollapsibleContent>
-      </Collapsible>
-    );
-  }
-
   return (
      <SidebarMenuItem key={item.href}>
       {item.external ? (
@@ -410,14 +373,23 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const flattenedNavItems = navItems.flatMap(item => {
+    if (item.children) {
+      // If an item has children, we return the children array.
+      // We filter out any hidden children.
+      return item.children.filter(child => !child.hidden || (child.href === '/admin' && isAdmin));
+    }
+    // If an item has no children, we return it in an array so flatMap can process it.
+    return [item];
+  }).filter(item => !item.hidden || (item.href === '/admin' && isAdmin));
+
   return (
     <SidebarProvider>
       <Sidebar>
         <SidebarHeader></SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {navItems
-              .filter((item) => !item.hidden || (item.href === '/admin' && isAdmin))
+            {flattenedNavItems
               .map((item) => (
                  <SidebarNavItem key={item.href} item={item} handleLinkClick={handleLinkClick} />
               ))}
@@ -502,8 +474,3 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     </SidebarProvider>
   );
 }
-
-    
-
-    
-
