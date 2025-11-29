@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Link from 'next/link';
@@ -111,7 +112,7 @@ function UserProfileButton() {
               src={user.photoURL ?? ''}
               alt={user.displayName ?? 'User'}
             />
-            <AvatarFallback className="bg-primary/80 text-white">
+            <AvatarFallback className="bg-blue-600 text-white">
               {user.email?.charAt(0).toUpperCase() ?? 'U'}
             </AvatarFallback>
           </Avatar>
@@ -505,3 +506,4 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     
 
     
+
