@@ -48,13 +48,8 @@ export default function CheckoutPage() {
       return;
     }
     
-    toast({
-      title: "Purchase Successful!",
-      description: `Thank you, ${user.email}. Your ${items[0].name} plan is now active.`,
-    });
-    
-    clearCart();
-    router.push('/dashboard'); 
+    // Redirect to external payment gateway
+    window.location.href = `https://payment.heattreatmentguide.com/`;
   };
 
   return (
