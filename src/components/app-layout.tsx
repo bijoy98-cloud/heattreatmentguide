@@ -112,7 +112,7 @@ function UserProfileButton() {
               src={user.photoURL ?? ''}
               alt={user.displayName ?? 'User'}
             />
-            <AvatarFallback className="bg-blue-600 text-white">
+            <AvatarFallback className="bg-primary text-primary-foreground">
               {user.email?.charAt(0).toUpperCase() ?? 'U'}
             </AvatarFallback>
           </Avatar>
@@ -287,7 +287,7 @@ function SidebarNavItem({ item, handleLinkClick }: { item: NavItem, handleLinkCl
         <CollapsibleContent>
             <SidebarMenuSub>
                 {item.children.map(child => (
-                    <SidebarMenuSubItem key={child.href}>
+                     <SidebarMenuSubItem key={child.href}>
                          <Link href={child.href} className="block w-full" onClick={(e) => handleLinkClick(e, child.href)}>
                             <SidebarMenuSubButton isActive={pathname === child.href} className={cn(isRestricted(child.href) && "text-muted-foreground/50 hover:text-muted-foreground/60")}>
                                 <child.icon className="shrink-0" />
@@ -384,10 +384,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     '/management-system': ['Standard', 'Premium', 'Admin'],
   };
   
-  const publicPaths = ['/login', '/about', '/skill-development', '/ai-features'];
+  const publicPaths = ['/login', '/about', '/skill-development'];
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
-    if (href === '/' || publicPaths.includes(href)) {
+    if (href === '/' || publicPaths.includes(href) || href.startsWith('/ai-features') || href.startsWith('/industrial-safety')) {
       return;
     }
 
