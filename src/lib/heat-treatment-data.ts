@@ -97,8 +97,14 @@ export const navItems: NavItem[] = [
         { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, description: "Analyze microstructures and defects from images." },
     ] 
   },
-  { href: "/industrial-safety", label: "Industrial Safety", icon: ShieldAlert },
-  { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks },
+  { 
+    href: "/industrial-safety", 
+    label: "Industrial Safety", 
+    icon: ShieldAlert,
+    children: [
+      { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks },
+    ]
+  },
   { href: "/alloy-database", label: "Alloy Database", icon: Database },
   { href: "/calculator", label: "Process Parameter", icon: Calculator },
   { href: "/hardness-calculator", label: "Hardness Calculator", icon: Bot },
