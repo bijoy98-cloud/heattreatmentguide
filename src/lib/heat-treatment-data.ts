@@ -125,6 +125,7 @@ export const navItems: NavItem[] = [
     children: [
         { href: "/calculator", parent: "calculators", label: "Process Parameter", icon: Calculator, description: "Rule-based calculator for process parameters." },
         { href: "/hardness-calculator", parent: "calculators", label: "Hardness Calculator", icon: Bot, description: "AI-powered calculator for hardness-based processes." },
+        { href: "/hardness-converter", parent: "calculators", label: "Hardness Converter", icon: Scale, description: "Convert between different hardness scales (e.g., HRC, HV, HB)." },
     ]
   },
   { 
