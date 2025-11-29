@@ -41,7 +41,7 @@ const plansData: {
     price: '$25',
     priceAmount: 25,
     period: 'per year',
-    description: 'For individuals and students. Access essential AI diagnostic tools and our comprehensive reference library.',
+    description: 'Ideal for students, hobbyists, and individuals starting in the field. Get access to core AI tools and a rich library of reference materials to support your learning and projects.',
     features: [
       "AI Material Suggestion",
       "AI Fault Diagnosis",
@@ -59,7 +59,7 @@ const plansData: {
     price: '$50',
     priceAmount: 50,
     period: 'per year',
-    description: 'For professionals and enthusiasts. Unlock advanced AI calculators and structured learning programs.',
+    description: 'Perfect for professionals and small teams. This plan unlocks advanced AI calculators for process design, structured learning programs, and in-depth guides for daily operations.',
     features: [
       'All Basic features, plus:',
       'Hardness-Based AI Process Calculator',
@@ -77,7 +77,7 @@ const plansData: {
     price: '$100',
     priceAmount: 100,
     period: 'per year',
-    description: 'For experts and organizations. Gain access to all features, including live AI chat and specialized process data.',
+    description: 'The complete toolkit for experts, consultants, and organizations. Gain a competitive edge with exclusive access to live AI chat for immediate expert consultation and specialized process data.',
     features: [
       'All Standard features, plus:',
       'Live AI Chat for direct Q&A',
