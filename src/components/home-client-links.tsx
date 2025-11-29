@@ -2,7 +2,7 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Database, Calculator, BookOpen } from "lucide-react";
+import { Database, Wand2, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 export function HomeClientLinks() {
@@ -13,9 +13,9 @@ export function HomeClientLinks() {
       icon: Database,
     },
     {
-      href: "/calculator",
-      label: "Calculator",
-      icon: Calculator,
+      href: "/parameter-tool",
+      label: "AI-Powered Suggestions",
+      icon: Wand2,
     },
     {
       href: "/processes",
