@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI flow that suggests a heat treatment process based on material and desired properties.
@@ -43,7 +44,7 @@ const suggestHeatTreatmentFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output() || { heatTreatment: "", temperatureRange: "", duration: "" };
+    return llmResponse.output || { heatTreatment: "", temperatureRange: "", duration: "" };
   }
 );
 

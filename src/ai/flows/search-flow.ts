@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI flow for handling global search queries.
@@ -84,7 +85,7 @@ const searchFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output() || { results: [] };
+    return llmResponse.output || { results: [] };
   }
 );
 
