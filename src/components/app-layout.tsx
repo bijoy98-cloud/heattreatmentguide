@@ -436,7 +436,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             </div>
             <div className="flex flex-col">
               <div className="font-semibold tracking-tight text-lg md:text-xl">
-                Heat Treatment Guide
+                page also show top header
               </div>
               <div className="text-sm text-muted-foreground">
                 An AI-powered guide
