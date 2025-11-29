@@ -162,7 +162,6 @@ export function AlloyDatabase() {
             </div>
         </CardContent>
       </Card>
-
     </div>
   );
 }
