@@ -95,7 +95,7 @@ export function AlloyDatabase() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full sm:w-auto bg-blue-50 dark:bg-blue-900/20"
               />
-              <Button onClick={handleDownload} variant="outline" size="icon">
+              <Button onClick={handleDownload} variant="default" size="icon">
                 <Download className="h-4 w-4" />
                 <span className="sr-only">Download CSV</span>
               </Button>
@@ -131,7 +131,6 @@ export function AlloyDatabase() {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
              {filteredSteels.length === 0 && (
                 <div className="text-center p-8 text-muted-foreground">
                     No matching steel grades found for "{searchTerm}".
