@@ -27,7 +27,7 @@ export function HomeClientLinks() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {quickLinks.map((link) => (
-        <Button key={link.href} asChild variant="outline" size="lg" className="justify-start">
+        <Button key={link.href} asChild variant="default" size="lg" className="justify-start">
           <Link href={link.href}>
             <link.icon className="mr-2 h-5 w-5" />
             {link.label}
