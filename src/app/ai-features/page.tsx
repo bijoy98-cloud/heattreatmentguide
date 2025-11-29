@@ -37,7 +37,7 @@ export default function AIFeaturesPage() {
               <Link key={feature.href} href={feature.href} className="block h-full">
                 <Card className="group h-full transition-all duration-300 hover:border-primary hover:shadow-lg hover:shadow-primary/10">
                   <CardHeader className="flex flex-row items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                         <feature.icon className="h-6 w-6" />
                     </div>
                     <div className="flex-grow">
