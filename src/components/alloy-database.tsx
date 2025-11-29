@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Database, Calculator } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function AlloyDatabase() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,6 +44,7 @@ export function AlloyDatabase() {
           placeholder="Search for a steel grade..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="focus-visible:ring-blue-400"
         />
       </div>
 
