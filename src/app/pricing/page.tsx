@@ -313,41 +313,6 @@ export default function PricingPage() {
 
         <div className="mx-auto w-full max-w-[330px] md:max-w-[580px] lg:max-w-4xl">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-             <Card className="flex flex-col border-2 border-yellow-500 shadow-lg">
-                  <div className="flex items-center justify-center gap-2 rounded-t-lg bg-yellow-500 py-2 text-sm font-semibold text-black">
-                    <Star className="h-4 w-4" />
-                    Free Forever
-                  </div>
-                  <CardHeader className="flex-grow-0">
-                      <CardTitle>{freePlan.name}</CardTitle>
-                      <div className="flex items-baseline">
-                      <span className="text-4xl font-bold">{freePlan.price}</span>
-                      <span className="text-muted-foreground">{freePlan.period}</span>
-                      </div>
-                      <CardDescription className="pt-2">{freePlan.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                      <ul className="space-y-3">
-                      {freePlan.features.map((feature, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                          <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-yellow-500" />
-                          <span className="text-sm text-muted-foreground">
-                              {feature}
-                          </span>
-                          </li>
-                      ))}
-                      </ul>
-                  </CardContent>
-                  <CardFooter>
-                      <Button
-                          className="w-full"
-                          variant={'outline'}
-                          onClick={() => router.push('/login')}
-                      >
-                          {freePlan.cta}
-                      </Button>
-                  </CardFooter>
-              </Card>
             {plansData.map((plan) => {
               const isCurrentPlan = plan.name === currentPlan || (currentPlan === 'Admin' && plan.name === 'Premium');
               const isDowngrade = plan.name !== 'Basic' && planHierarchy[plan.name as UserPlan] < planHierarchy[currentPlan];
@@ -439,5 +404,3 @@ export default function PricingPage() {
     </>
   );
 }
-
-    
