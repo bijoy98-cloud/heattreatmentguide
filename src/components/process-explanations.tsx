@@ -45,6 +45,7 @@ export function ProcessExplanations() {
           placeholder="Search processes..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="bg-primary/10"
         />
       </div>
 
