@@ -145,7 +145,7 @@ export const navItems: NavItem[] = [
     href: "/quality-assurance",
     label: "Quality Assurance",
     icon: BadgeCheck,
-    hidden: true
+    hidden: false
   },
   { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart, hidden: true },
   {
