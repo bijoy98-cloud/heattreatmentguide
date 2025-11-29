@@ -9,4 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function BrazingPage() {
-  return
+  return (
+    <AppLayout>
+      <Brazing />
+    </AppLayout>
+  );
+}

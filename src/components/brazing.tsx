@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -36,7 +35,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { brazingData } from "@/lib/heat-treatment-data";
-import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line } from 'recharts';
+import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, Label as RechartsLabel } from 'recharts';
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 
 const baseMaterials = [
@@ -376,7 +375,7 @@ export function Brazing() {
             </p>
             </CardContent>
         </Card>
-    
+      </div>
 
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
@@ -539,4 +538,5 @@ export function Brazing() {
         </CardContent>
       </Card>
     </div>
-  
+  );
+}
