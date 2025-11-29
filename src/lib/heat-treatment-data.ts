@@ -111,6 +111,7 @@ export const navItems: NavItem[] = [
     href: "/fundamental",
     label: "Fundamental",
     icon: Atom,
+    description: "Explore the core concepts of metallurgy.",
     children: [
         { href: "/alloy-database", parent: "fundamental", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
         { href: "/glossary", parent: "fundamental", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
@@ -120,6 +121,7 @@ export const navItems: NavItem[] = [
     href: "/calculators",
     label: "Calculators",
     icon: Calculator,
+    description: "Access our suite of heat treatment calculators.",
     children: [
         { href: "/calculator", parent: "calculators", label: "Process Parameter", icon: Calculator, description: "Rule-based calculator for process parameters." },
         { href: "/hardness-calculator", parent: "calculators", label: "Hardness Calculator", icon: Bot, description: "AI-powered calculator for hardness-based processes." },
@@ -145,6 +147,7 @@ export const navItems: NavItem[] = [
     href: "/quality-assurance",
     label: "Quality Assurance",
     icon: BadgeCheck,
+    description: "Learn about testing, analysis, and compliance in heat treatment.",
     hidden: false
   },
   { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart, hidden: true },
@@ -152,6 +155,7 @@ export const navItems: NavItem[] = [
     href: "/management-system",
     label: "Management System",
     icon: GanttChartSquare,
+    description: "Explore the management systems and documentation standards.",
     hidden: false
   },
   { href: "/community", label: "Community Network", icon: Users },
