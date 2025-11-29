@@ -105,7 +105,6 @@ export const navItems: NavItem[] = [
     description: "Guides and tools to maintain a safe working environment.",
     children: [
         { href: "/hazard-identification", parent: "industrial-safety", label: "Hazard ID Tool", icon: ListChecks, description: "An interactive checklist to identify and mitigate potential hazards." },
-        { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment.", hidden: true },
     ]
   },
     { href: "/fundamental", label: "Fundamental", icon: Atom, description: "Explore fundamental industrial processes and applications." },
@@ -113,7 +112,7 @@ export const navItems: NavItem[] = [
     { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
   {
     href: "/calculators",
-    label: "HT Calculators",
+    label: "Heat Treatment Calculators",
     icon: Calculator,
     description: "Access our suite of heat treatment calculators.",
      children: [
@@ -2385,3 +2384,5 @@ export const courseLevels = [
     ],
   },
 ];
+
+    
