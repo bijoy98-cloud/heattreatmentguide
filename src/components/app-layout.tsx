@@ -290,9 +290,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const allNavItems = navItems.flatMap(item =>
-    item.children ? [item, ...item.children] : [item]
-  );
+  const mainNavItems = navItems.filter(item => !item.parent);
 
   return (
     <SidebarProvider>
@@ -300,20 +298,66 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader></SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {allNavItems
-              .filter((item) => !item.hidden)
+            {mainNavItems
+              .filter((item) => !item.hidden || (item.href === '/admin' && isAdmin))
               .map((item) => {
-                let isVisible = true;
-                if (item.href === '/admin') {
-                  isVisible = isAdmin ?? false;
+                const hasChildren = item.children && item.children.length > 0;
+                const isParentActive = hasChildren && item.children.some(child => pathname === child.href);
+
+                if (hasChildren) {
+                  return (
+                    <Collapsible key={item.href} asChild>
+                      <SidebarMenuItem>
+                        <CollapsibleTrigger asChild>
+                           <SidebarMenuButton
+                            isActive={isParentActive}
+                            className='justify-between w-full'
+                            tooltip={{ children: item.label }}
+                           >
+                            <div className="flex items-center gap-2">
+                              <item.icon className="shrink-0" />
+                              <span>{item.label}</span>
+                            </div>
+                            <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+                          </SidebarMenuButton>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent asChild>
+                          <div className="space-y-1 pl-6 pt-1">
+                            {item.children?.map(child => {
+                               const requiredPlans = restrictedPaths[child.href];
+                               const isRestricted = user && requiredPlans && !requiredPlans.includes(currentPlan);
+                               return (
+                                <SidebarMenuItem key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    className="block w-full"
+                                    onClick={(e) => handleLinkClick(e, child.href)}
+                                  >
+                                    <SidebarMenuButton
+                                      isActive={!isRestricted && pathname === child.href}
+                                      className={cn(
+                                        'justify-start w-full',
+                                        isRestricted && 'text-muted-foreground/50 hover:text-muted-foreground/60'
+                                      )}
+                                      tooltip={{ children: child.label }}
+                                    >
+                                      <child.icon className="shrink-0" />
+                                      <span>{child.label}</span>
+                                      {isRestricted && <Lock className="ml-auto h-3 w-3" />}
+                                    </SidebarMenuButton>
+                                  </Link>
+                                </SidebarMenuItem>
+                               )
+                            })}
+                          </div>
+                        </CollapsibleContent>
+                      </SidebarMenuItem>
+                    </Collapsible>
+                  );
                 }
-                if (!isVisible) return null;
 
                 const requiredPlans = restrictedPaths[item.href];
-                const isRestricted =
-                  user &&
-                  requiredPlans &&
-                  !requiredPlans.includes(currentPlan);
+                const isRestricted = user && requiredPlans && !requiredPlans.includes(currentPlan);
 
                 return (
                   <SidebarMenuItem key={item.href}>
@@ -343,17 +387,13 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                           isActive={!isRestricted && pathname === item.href}
                           className={cn(
                             'justify-start w-full',
-                            item.parent && "pl-8",
-                            isRestricted &&
-                              'text-muted-foreground/50 hover:text-muted-foreground/60'
+                            isRestricted && 'text-muted-foreground/50 hover:text-muted-foreground/60'
                           )}
                           tooltip={{ children: item.label }}
                         >
                           <item.icon className="shrink-0" />
                           <span>{item.label}</span>
-                          {isRestricted && (
-                            <Lock className="ml-auto h-3 w-3" />
-                          )}
+                          {isRestricted && <Lock className="ml-auto h-3 w-3" />}
                         </SidebarMenuButton>
                       </Link>
                     )}
