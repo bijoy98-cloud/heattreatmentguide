@@ -20,6 +20,7 @@ import { useCart } from '@/hooks/use-cart';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
+import { AppLayout } from '@/components/app-layout';
 
 type Plan = 'Basic' | 'Standard' | 'Premium';
 
@@ -298,7 +299,7 @@ export default function PricingPage() {
 
 
   return (
-    <>
+    <AppLayout>
       <div className="space-y-12">
         <div>
           <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight">
@@ -401,6 +402,6 @@ export default function PricingPage() {
         
         <UpgradeCalculator />
       </div>
-    </>
+    </AppLayout>
   );
 }
