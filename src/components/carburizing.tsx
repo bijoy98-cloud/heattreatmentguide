@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, FormEvent } from "react";
 import {
@@ -21,6 +22,7 @@ import {
   Loader2,
   Bot,
   Feather,
+  Youtube,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Label } from "@/components/ui/label";
@@ -47,6 +49,8 @@ import {
 } from "recharts";
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
 import { suggestCarburizingProcess } from "@/ai/flows/suggest-carburizing-process-flow";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const carburizingAlloys = steelGrades.filter((s) => s.carburizingFactor);
 
@@ -341,6 +345,9 @@ export function Carburizing() {
     }
 };
 
+  const decarburizationVideo = PlaceHolderImages.find(img => img.id === 'decarburization-vs-carburization');
+
+
   return (
     <div className="space-y-12">
       <div>
@@ -609,6 +616,40 @@ export function Carburizing() {
               heat treatment.
             </p>
           </div>
+        </CardContent>
+      </Card>
+
+       <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-3">
+            <Youtube className="h-6 w-6 text-primary" />
+            Learn More on YouTube
+          </CardTitle>
+          <CardDescription>
+            Watch a video to learn more about carburizing and decarburization.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <a
+            href="https://youtu.be/lG1JDxw5u4A"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block relative aspect-video rounded-lg overflow-hidden border hover:shadow-lg transition-shadow"
+          >
+            {decarburizationVideo ? (
+              <Image
+                src={decarburizationVideo.imageUrl}
+                alt={decarburizationVideo.description}
+                fill
+                className="object-cover"
+                data-ai-hint={decarburizationVideo.imageHint}
+              />
+            ) : (
+              <div className="text-sm text-center text-primary font-semibold p-4 border border-dashed rounded-lg hover:bg-muted h-full flex items-center justify-center">
+                Decarburization vs Carburization
+              </div>
+            )}
+          </a>
         </CardContent>
       </Card>
     </div>
