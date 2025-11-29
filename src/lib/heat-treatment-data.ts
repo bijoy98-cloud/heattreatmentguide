@@ -98,7 +98,7 @@ export const navItems: NavItem[] = [
     ] 
   },
   { href: "/industrial-safety", label: "Industrial Safety", icon: ShieldAlert },
-  { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks, hidden: true },
+  { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks },
   { href: "/alloy-database", label: "Alloy Database", icon: Database },
   { href: "/calculator", label: "Process Parameter", icon: Calculator },
   { href: "/hardness-calculator", label: "Hardness Calculator", icon: Bot },
@@ -2050,14 +2050,14 @@ export const hazardCategories = [
     items: [
       { id: "q1", label: "Is the quench tank level and temperature correct?" },
       { id: "q2", label: "Is there adequate fire suppression for the quench tank (e.g., CO2, lid)?" },
-      { id_at: "q3", label: "Is a face shield and appropriate PPE being used for quenching?" },
+      { id: "q3", label: "Is a face shield and appropriate PPE being used for quenching?" },
       { id: "q4", label: "Is the quench oil free from significant water contamination?" },
       { id: "q5", label: "Is there proper ventilation to handle fumes and smoke?" },
     ],
   },
   {
     id: "chemical",
-    title: "Chemical &amp; Gas Handling",
+    title: "Chemical & Gas Handling",
     items: [
       { id: "c1", label: "Are Safety Data Sheets (SDS) available for all chemicals?" },
       { id: "c2", label: "Are flammable/process gas cylinders secured and stored properly?" },
