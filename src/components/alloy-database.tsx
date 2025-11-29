@@ -1,8 +1,9 @@
 
-'use client';
-
-import { useState, useMemo } from 'react';
-import { steelGrades } from '@/lib/heat-treatment-data';
+"use client";
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import { steelGrades } from "@/lib/heat-treatment-data";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -10,21 +11,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Database, Download, ExternalLink } from 'lucide-react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from './ui/card';
-import { useRouter } from 'next/navigation';
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Database, Calculator, Download, ExternalLink } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { useRouter } from "next/navigation";
 
 export function AlloyDatabase() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
   const filteredSteels = useMemo(() => {
@@ -136,6 +130,7 @@ export function AlloyDatabase() {
                     No matching steel grades found for "{searchTerm}".
                 </caption>
              )}
+            </Table>
           </div>
         </CardContent>
       </Card>
