@@ -23,7 +23,7 @@ export function QuizWrapper() {
           <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4">
                <p className="text-sm text-muted-foreground text-justify">Use this self-assessment form to evaluate your understanding of the course material.</p>
                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-                    <Button asChild variant="outline" size="sm" className="w-full sm:w-auto shrink-0">
+                    <Button asChild variant="default" size="sm" className="w-full sm:w-auto shrink-0 bg-blue-600 hover:bg-blue-700 text-white">
                         <a href="https://docs.google.com/document/d/1zXyWHExHjDRvetu147gHmFIzboIARiBM-JcX7QyrOAw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <Download className="mr-2 h-4 w-4" />
                             Download Form
