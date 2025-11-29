@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
-import { analyzeMicrostructure, AnalyzeMicrostructureInput } from '@/ai/flows/analyze-microstructure-flow';
+import { analyzeMicrostructure } from '@/ai/flows/analyze-microstructure-flow';
+import type { AnalyzeMicrostructureInput } from '@/ai/flows/analyze-microstructure-flow';
 import { z } from 'zod';
 
 const RequestBodySchema = z.object({
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
   }
   
   try {
-    const aiResponse = await analyzeMicrostructure(parsed.data);
+    const aiResponse = await analyzeMicrostructure(parsed.data as AnalyzeMicrostructureInput);
     
     if (!aiResponse || !aiResponse.phaseComposition) {
       return NextResponse.json(
