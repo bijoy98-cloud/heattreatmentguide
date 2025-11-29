@@ -1,13 +1,15 @@
 
 import { AppLayout } from "@/components/app-layout";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { navItems } from "@/lib/heat-treatment-data";
 import Link from "next/link";
-import { Atom } from "lucide-react";
+import { Atom, Database, List } from "lucide-react";
 
 export default function FundamentalPage() {
-  const fundamentalParent = navItems.find(item => item.href === '/fundamental');
-  const fundamentalFeatures = fundamentalParent?.children || [];
+  const fundamentalFeatures = [
+      { href: "/alloy-database", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
+      { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
+  ];
 
   return (
     <AppLayout>

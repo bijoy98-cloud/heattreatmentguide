@@ -113,11 +113,10 @@ export const navItems: NavItem[] = [
     label: "Fundamental",
     icon: Atom,
     description: "Explore the core concepts of metallurgy.",
-    children: [
-        { href: "/glossary", parent: "fundamental", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
-    ]
+    children: []
   },
     { href: "/alloy-database", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
+    { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
   {
     href: "/calculators",
     label: "Calculators",
