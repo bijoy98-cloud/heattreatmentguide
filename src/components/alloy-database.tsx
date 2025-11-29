@@ -93,7 +93,7 @@ export function AlloyDatabase() {
                 placeholder="Search steel grade..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto bg-blue-50 dark:bg-blue-900/20"
               />
               <Button onClick={handleDownload} variant="outline" size="icon">
                 <Download className="h-4 w-4" />
