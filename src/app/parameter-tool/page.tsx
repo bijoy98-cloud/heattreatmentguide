@@ -91,7 +91,7 @@ export default function ParameterToolPage() {
                 <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
                   <Thermometer className="w-6 h-6 text-destructive" />
                   <div className="flex-1">
-                    <p className="text-sm font-semibold">Temperature Range</p>
+                    <p className="text-sm font-semibold">what is the Temperature Range</p>
                     <p className="text-lg font-bold">{state.temperatureRange}</p>
                   </div>
                 </div>
