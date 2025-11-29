@@ -154,7 +154,7 @@ export const navItems: NavItem[] = [
     hidden: true
   },
   { href: "/community", label: "Community Network", icon: Users },
-  { href: "/skill-development", label: "Skill Development", icon: GraduationCap, hidden: true },
+  { href: "/skill-development", label: "Skill Development", icon: GraduationCap },
   { href: "/course", label: "Course Program", icon: Book },
   { href: "/pricing", label: "Pricing", icon: CreditCard, hidden: true },
   { href: "/about", label: "About Us", icon: Info },
@@ -1860,7 +1860,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   },
   {
     term: "Eutectoid",
-    definition: "(I) An isothermal reversible reaction in which a solid solution is converted into two or more intimately mixed solids on cooling, the number of solids formed being the same as the number of components in the system. (2) An alloy having the composition indicated by the eutectoid point on an equilibrium diagram. (3) An alloy structure of intermixed solid constituents formed by a eutectoid reaction."
+    definition: "(I) An isothermal reversible reaction in which a solid solution is converted into two or more intimately mixed solids on cooling, a number of solids formed being the same as the number of components in the system. (2) An alloy having the composition indicated by the eutectoid point on an equilibrium diagram. (3) An alloy structure of intermixed solid constituents formed by a eutectoid reaction."
   },
   {
     term: "Extra Hard",
