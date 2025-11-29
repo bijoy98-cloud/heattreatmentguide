@@ -264,6 +264,7 @@ function ParameterCalculator() {
               value={partThickness}
               onChange={(e) => setPartThickness(e.target.value)}
               placeholder="e.g., 1.5"
+              className="bg-primary/10"
             />
           </div>
 
