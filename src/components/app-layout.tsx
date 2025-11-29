@@ -426,49 +426,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <div className="flex items-center justify-center gap-2 p-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-red-600/70 hover:text-red-600"
-              asChild
-            >
-              <a
-                href="https://www.youtube.com/channel/UCaoJ6eqgXqawJ9hfEn43Bag"
-                target="_blank"
-              >
-                <Youtube className="h-4 w-4" />
-              </a>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-blue-600/70 hover:text-blue-600"
-              asChild
-            >
-              <Link
-                href="https://www.facebook.com/HeatTreatmentTraining/"
-                target="_blank"
-              >
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                </svg>
-              </Link>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-blue-500/70 hover:text-blue-500"
-              asChild
-            >
-              <Link
-                href="https://www.linkedin.com/in/bijoy-saha-bijoy98"
-                target="_blank"
-              >
-                <Linkedin className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
