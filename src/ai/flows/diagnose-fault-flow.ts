@@ -44,7 +44,7 @@ const diagnoseFaultFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output() || { possibleCauses: [], correctiveActions: [] };
+    return llmResponse.output || { possibleCauses: [], correctiveActions: [] };
   }
 );
 

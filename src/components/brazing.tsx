@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import {
   CheckCircle,
-  Link,
+  Link as LinkIcon,
   Shield,
   Sun,
   Zap,
@@ -37,6 +38,7 @@ import { useToast } from "@/hooks/use-toast";
 import { brazingData } from "@/lib/heat-treatment-data";
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, Label as RechartsLabel } from 'recharts';
 import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart";
+import Link from "next/link";
 
 const baseMaterials = [
     { value: "steel", label: "Carbon/Alloy Steel" },
@@ -220,7 +222,7 @@ export function Brazing() {
     <div className="space-y-12">
       <div>
         <h2 className="flex items-center gap-3 text-3xl font-bold tracking-tight">
-          <Link className="h-8 w-8 text-primary" />
+          <LinkIcon className="h-8 w-8 text-primary" />
           Special Process: Brazing
         </h2>
         <p className="mt-2 max-w-2xl text-muted-foreground text-justify">
@@ -375,7 +377,7 @@ export function Brazing() {
             </p>
             </CardContent>
         </Card>
-      </div>
+    </div>
 
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">

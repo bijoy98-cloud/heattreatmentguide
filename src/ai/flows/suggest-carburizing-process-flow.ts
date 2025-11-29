@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI flow that recommends a full carburizing process.
@@ -104,7 +105,7 @@ const suggestCarburizingProcessFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output() || { carburizingTemperature: '', soakingTime: '', quenchingTemperature: '', processNotes: [], graphData: [] };
+    return llmResponse.output || { carburizingTemperature: '', soakingTime: '', quenchingTemperature: '', processNotes: [], graphData: [] };
   }
 );
 

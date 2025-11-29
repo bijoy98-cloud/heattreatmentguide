@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI flow that recommends a full heat treatment process based on material and desired hardness.
@@ -108,7 +109,7 @@ const recommendProcessFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output() || { steps: [], graphData: [] };
+    return llmResponse.output || { steps: [], graphData: [] };
   }
 );
 
