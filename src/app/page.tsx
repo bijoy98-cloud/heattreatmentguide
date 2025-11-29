@@ -16,7 +16,7 @@ type Plan = 'Free' | 'Basic' | 'Standard' | 'Premium' | 'Admin';
 
 export default function Home() {
   const features = navItems.filter(
-    (item) => !item.children && ((item.href === '/about' || (!item.external && !item.hidden)) || item.href === '/fundamental' || item.href === '/hazard-identification')
+    (item) => ((!item.children && ((item.href === '/about' || (!item.external && !item.hidden)) || item.href === '/fundamental' || item.href === '/hazard-identification'))) || item.href === '/ai-features'
   );
   
   const { user, isUserLoading } = useFirebase();
@@ -146,8 +146,7 @@ export default function Home() {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground">
-                        Explore {feature.label.toLowerCase()} and expand your
-                        knowledge.
+                        {feature.description || `Explore ${feature.label.toLowerCase()} and expand your knowledge.`}
                       </p>
                     </CardContent>
                   </Card>

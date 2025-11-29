@@ -274,6 +274,9 @@ function SidebarNavItem({ item, handleLinkClick }: { item: NavItem, handleLinkCl
                 variant="ghost"
                 className="justify-start w-full"
                 tooltip={{ children: item.label }}
+                 onClick={(e) => {
+                    if (item.href) handleLinkClick(e, item.href)
+                }}
             >
                 <item.icon className="shrink-0" />
                 <span>{item.label}</span>
@@ -380,10 +383,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     '/management-system': ['Standard', 'Premium', 'Admin'],
   };
   
-  const publicPaths = ['/login', '/about', '/skill-development'];
+  const publicPaths = ['/login', '/about', '/skill-development', '/ai-features'];
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
-    if (href === '/' || publicPaths.includes(href) || href === '/skill-development' || href === '/ai-features') {
+    if (href === '/' || publicPaths.includes(href)) {
       return;
     }
 
