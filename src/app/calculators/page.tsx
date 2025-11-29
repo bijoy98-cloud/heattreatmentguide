@@ -17,7 +17,7 @@ export default function CalculatorsPage() {
             <div className="flex items-center gap-3">
               <Calculator className="h-10 w-10 text-primary" />
               <h1 className="text-4xl font-bold tracking-tight">
-                HT Calculators
+                Heat Treatment Calculators
               </h1>
             </div>
             <p className="max-w-3xl text-lg text-muted-foreground text-justify">
