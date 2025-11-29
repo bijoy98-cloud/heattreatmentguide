@@ -113,7 +113,7 @@ export const navItems: NavItem[] = [
     { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
   {
     href: "/calculators",
-    label: "Calculators",
+    label: "HT Calculators",
     icon: Calculator,
     description: "Access our suite of heat treatment calculators.",
      children: [
