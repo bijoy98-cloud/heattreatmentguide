@@ -29,7 +29,7 @@ export function QuizWrapper() {
                             Download Form
                         </a>
                     </Button>
-                    <Button onClick={handleGoToQuiz} size="sm" className="w-full sm:w-auto shrink-0">
+                    <Button onClick={handleGoToQuiz} size="sm" className="w-full sm:w-auto shrink-0 bg-blue-500 text-white hover:bg-blue-600">
                         <Pencil className="mr-2 h-4 w-4" />
                         Take Exam
                     </Button>
