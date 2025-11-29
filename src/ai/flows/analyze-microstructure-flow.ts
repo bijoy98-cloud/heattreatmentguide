@@ -52,7 +52,7 @@ const analyzeMicrostructureFlow = ai.defineFlow(
       },
     });
 
-    return llmResponse.output;
+    return llmResponse.output!;
   }
 );
 
