@@ -70,79 +70,45 @@ export default function CheckoutPage() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {items.length > 0 ? (
-                  <div className="space-y-4">
-                    {items.map((item) => (
-                      <div key={item.id} className="flex items-center justify-between">
-                        <div>
-                          <p className="font-semibold">{item.name} Plan</p>
-                          <p className="text-sm text-muted-foreground">Annual Subscription</p>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <p className="font-semibold text-lg">${item.price.toFixed(2)}</p>
-                            <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
-                                <Trash2 className="h-4 w-4 text-destructive"/>
-                            </Button>
-                        </div>
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {items.length > 0 ? (
+                <div className="space-y-4">
+                  {items.map((item) => (
+                    <div key={item.id} className="flex items-center justify-between">
+                      <div>
+                        <p className="font-semibold">{item.name} Plan</p>
+                        <p className="text-sm text-muted-foreground">Annual Subscription</p>
                       </div>
-                    ))}
-                     <div className="border-t pt-4 mt-4 flex justify-between font-bold text-xl">
-                        <p>Total</p>
-                        <p>${total.toFixed(2)}</p>
+                      <div className="flex items-center gap-4">
+                          <p className="font-semibold text-lg">${item.price.toFixed(2)}</p>
+                          <Button variant="ghost" size="icon" onClick={() => removeFromCart(item.id)}>
+                              <Trash2 className="h-4 w-4 text-destructive"/>
+                          </Button>
+                      </div>
                     </div>
+                  ))}
+                   <div className="border-t pt-4 mt-4 flex justify-between font-bold text-xl">
+                      <p>Total</p>
+                      <p>${total.toFixed(2)}</p>
                   </div>
-                ) : (
-                  <p className="text-muted-foreground text-center py-8">Your cart is empty.</p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                    <CreditCard className="h-5 w-5"/>
-                    Payment Details
-                </CardTitle>
-                <CardDescription>Enter your payment information to complete the purchase.</CardDescription>
-              </CardHeader>
-              <form onSubmit={handlePayment}>
-                <CardContent className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="card-number">Card Number</Label>
-                    <Input id="card-number" placeholder="•••• •••• •••• ••••" required />
-                  </div>
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="space-y-2 col-span-2">
-                      <Label htmlFor="expiry">Expiry Date</Label>
-                      <Input id="expiry" placeholder="MM / YY" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="cvc">CVC</Label>
-                      <Input id="cvc" placeholder="•••" required />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Name on Card</Label>
-                    <Input id="name" placeholder="John Doe" required />
-                  </div>
-                </CardContent>
+                </div>
+              ) : (
+                <p className="text-muted-foreground text-center py-8">Your cart is empty.</p>
+              )}
+            </CardContent>
+            <form onSubmit={handlePayment}>
                 <CardFooter>
-                  <Button type="submit" className="w-full" size="lg" disabled={items.length === 0}>
-                    Pay ${total.toFixed(2)}
-                  </Button>
+                    <Button type="submit" className="w-full" size="lg" disabled={items.length === 0}>
+                        Confirm Purchase for ${total.toFixed(2)}
+                    </Button>
                 </CardFooter>
-              </form>
-            </Card>
-          </div>
+            </form>
+          </Card>
         </div>
       </div>
     </AppLayout>
