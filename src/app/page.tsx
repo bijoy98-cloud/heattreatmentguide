@@ -16,7 +16,13 @@ type Plan = 'Free' | 'Basic' | 'Standard' | 'Premium' | 'Admin';
 
 export default function Home() {
   const features = navItems.filter(
-    (item) => ((!item.children && ((item.href === '/about' || (!item.external && !item.hidden)) || item.href === '/fundamental' || item.href === '/hazard-identification'))) || item.href === '/ai-features'
+    (item) =>
+      ((!item.children &&
+        ((item.href === '/about' || (!item.external && !item.hidden)) ||
+          item.href === '/fundamental' ||
+          item.href === '/hazard-identification'))) ||
+      item.href === '/ai-features' ||
+      item.href === '/industrial-safety'
   );
   
   const { user, isUserLoading } = useFirebase();
