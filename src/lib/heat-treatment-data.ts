@@ -89,14 +89,12 @@ export const navItems: NavItem[] = [
     href: "/ai-features", 
     label: "AI Features", 
     icon: Cpu, 
-    description: "A suite of AI-powered tools for metallurgy analysis.",
-    children: [
-        { href: "/ask-gemini", label: "Live AI Chat", icon: MessageSquare, description: "Chat with a virtual metallurgist for instant answers." },
-        { href: "/suggestion", label: "AI Material Suggestion", icon: Sparkles, description: "Get AI-based recommendations for materials and heat treatments." },
-        { href: "/fault-diagnosis", label: "AI Fault Diagnosis", icon: Wrench, description: "Diagnose heat treatment faults with the help of AI." },
-        { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, description: "Analyze microstructures and defects from images." },
-    ] 
+    description: "A suite of AI-powered tools for metallurgy analysis."
   },
+  { href: "/ask-gemini", label: "Live AI Chat", icon: MessageSquare, description: "Chat with a virtual metallurgist for instant answers.", hidden: true },
+  { href: "/suggestion", label: "AI Material Suggestion", icon: Sparkles, description: "Get AI-based recommendations for materials and heat treatments.", hidden: true },
+  { href: "/fault-diagnosis", label: "AI Fault Diagnosis", icon: Wrench, description: "Diagnose heat treatment faults with the help of AI.", hidden: true },
+  { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, description: "Analyze microstructures and defects from images.", hidden: true },
   { 
     href: "/industrial-safety", 
     label: "Industrial Safety", 
@@ -967,7 +965,7 @@ export const processesInfo: Process[] = [
       {
         title: "Soaking",
         description:
-          "Hold at the austenitizing temperature to ensure the part is uniformly heated and fully transformed to austenite.",
+          "Hold at the austenitizing temperature to ensure the part is uniformly heated and in a fully austenitic state.",
       },
       {
         title: "Quenching",
@@ -2112,5 +2110,7 @@ export const brazingData = [
         notes: "Special flux (AWS FB1-A) required. Temperature control is critical as it's close to the base metal melting point."
     }
 ];
+
+    
 
     
