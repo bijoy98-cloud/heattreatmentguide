@@ -77,6 +77,7 @@ export type NavItem = {
   external?: boolean;
   hidden?: boolean;
   description?: string;
+  parent?: string;
   children?: NavItem[];
 };
 
@@ -89,45 +90,71 @@ export const navItems: NavItem[] = [
     href: "/ai-features", 
     label: "AI Features", 
     icon: Cpu, 
-    description: "A suite of AI-powered tools for metallurgy analysis."
+    description: "A suite of AI-powered tools for metallurgy analysis.",
+    children: [
+        { href: "/suggestion", parent: "ai-features", label: "AI Material Suggestion", icon: Sparkles, description: "Get AI-based recommendations for materials and heat treatments." },
+        { href: "/fault-diagnosis", parent: "ai-features", label: "AI Fault Diagnosis", icon: Wrench, description: "Diagnose heat treatment faults with the help of AI." },
+        { href: "/image-analyzer", parent: "ai-features", label: "AI Image Analyzer", icon: Scan, description: "Analyze microstructures and defects from images." },
+        { href: "/ask-gemini", parent: "ai-features", label: "Live AI Chat", icon: MessageSquare, description: "Chat with a virtual metallurgist for instant answers." },
+    ]
   },
-  { href: "/ask-gemini", label: "Live AI Chat", icon: MessageSquare, description: "Chat with a virtual metallurgist for instant answers.", hidden: true },
-  { href: "/suggestion", label: "AI Material Suggestion", icon: Sparkles, description: "Get AI-based recommendations for materials and heat treatments.", hidden: true },
-  { href: "/fault-diagnosis", label: "AI Fault Diagnosis", icon: Wrench, description: "Diagnose heat treatment faults with the help of AI.", hidden: true },
-  { href: "/image-analyzer", label: "AI Image Analyzer", icon: Scan, description: "Analyze microstructures and defects from images.", hidden: true },
   { 
     href: "/industrial-safety", 
     label: "Industrial Safety", 
-    icon: ShieldAlert
+    icon: ShieldAlert,
+    children: [
+        { href: "/hazard-identification", parent: "industrial-safety", label: "Hazard ID Tool", icon: ListChecks, description: "An interactive checklist to identify and mitigate potential hazards." },
+    ]
   },
-  { href: "/hazard-identification", label: "Hazard ID Tool", icon: ListChecks, hidden: true },
-  { href: "/alloy-database", label: "Alloy Database", icon: Database },
-  { href: "/calculator", label: "Process Parameter", icon: Calculator },
-  { href: "/hardness-calculator", label: "Hardness Calculator", icon: Bot },
-  { href: "/processes", label: "Process Explanations", icon: BookOpen },
-  { href: "/carburizing", label: "Carburising Process", icon: Layers },
-  { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component },
-  { href: "/brazing", label: "Brazing Process", icon: Link },
-  { href: "/fundamental", label: "Fundamental", icon: Atom, hidden: true },
-  { href: "/glossary", label: "Glossary of Terms", icon: List },
+  {
+    href: "/fundamental",
+    label: "Fundamental",
+    icon: Atom,
+    children: [
+        { href: "/alloy-database", parent: "fundamental", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
+        { href: "/glossary", parent: "fundamental", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
+    ]
+  },
+  {
+    href: "/calculators",
+    label: "Calculators",
+    icon: Calculator,
+    children: [
+        { href: "/calculator", parent: "calculators", label: "Process Parameter", icon: Calculator, description: "Rule-based calculator for process parameters." },
+        { href: "/hardness-calculator", parent: "calculators", label: "Hardness Calculator", icon: Bot, description: "AI-powered calculator for hardness-based processes." },
+    ]
+  },
+  { 
+    href: "/processes", 
+    label: "Process Explanations", 
+    icon: BookOpen,
+    children: [
+        { href: "/carburizing", parent: "processes", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
+        { href: "/plasma-nitriding", parent: "processes", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
+        { href: "/brazing", parent: "processes", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
+    ]
+  },
   {
     href: "/industrial-tools",
     label: "Tools & References",
     icon: Briefcase,
+    hidden: true
   },
   {
     href: "/quality-assurance",
     label: "Quality Assurance",
     icon: BadgeCheck,
+    hidden: true
   },
-  { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart },
+  { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart, hidden: true },
   {
     href: "/management-system",
     label: "Management System",
     icon: GanttChartSquare,
+    hidden: true
   },
   { href: "/community", label: "Community Network", icon: Users },
-  { href: "/skill-development", label: "Skill Development", icon: GraduationCap },
+  { href: "/skill-development", label: "Skill Development", icon: GraduationCap, hidden: true },
   { href: "/course", label: "Course Program", icon: Book },
   { href: "/pricing", label: "Pricing", icon: CreditCard, hidden: true },
   { href: "/about", label: "About Us", icon: Info },
@@ -508,7 +535,7 @@ export const processesInfo: Process[] = [
     name: "Full Annealing",
     icon: Maximize2,
     description:
-      "The standard annealing process for hypo-eutectoid steels (carbon < 0.77%) to produce a soft, ductile, and coarse pearlitic structure, making the steel easy to machine.",
+      "The standard annealing process for hypo-eutectoid steels (carbon &lt; 0.77%) to produce a soft, ductile, and coarse pearlitic structure, making the steel easy to machine.",
     steps: [
       {
         title: "Heating",
@@ -1974,7 +2001,7 @@ export const quizQuestions = [
   },
   {
     question: "The Jominy end-quench test is used to measure a steel's...",
-    options: ["Toughness", "Ductility", "Hardenability", "Tensile Strength"],
+    options: ["Toughness", "D ductility", "Hardenability", "Tensile Strength"],
     answer: "Hardenability",
   },
   {
@@ -2138,7 +2165,233 @@ export const brazingData = [
     }
 ];
 
+export const courseLevels = [
+  {
+    id: 'beginner',
+    title: 'Beginner Level',
+    description: 'Foundational concepts for those new to metallurgy and heat treatment.',
+    duration: 'Days 1-5',
+    days: [
+      {
+        day: 1,
+        title: 'Introduction to Metallurgy & Safety',
+        description:
+          'Understand the basic concepts of metallurgy and the critical importance of safety in a heat treatment environment. This module sets the stage for all future learning.',
+        tags: ['Fundamentals', 'Safety', 'Metallurgy'],
+        topics: [
+          'What is Heat Treatment?',
+          'Basic categories of ferrous metals (Iron, Steel, Stainless Steel)',
+          'Essential Personal Protective Equipment (PPE)',
+          'Understanding furnace and quench tank hazards',
+        ],
+      },
+      {
+        day: 2,
+        title: 'The Iron-Carbon Phase Diagram',
+        description:
+          'Learn to read and interpret the most important roadmap in ferrous metallurgy. This diagram is key to understanding how steel behaves when heated and cooled.',
+        tags: ['Phase Diagram', 'Metallurgy', 'Core Concept'],
+        topics: [
+          'Key phases: Ferrite, Austenite, Cementite, Pearlite',
+          'Critical temperatures: A1, A3, Acm',
+          'Eutectoid, Hypoeutectoid, and Hypereutectoid steels',
+          'How carbon content changes the diagram',
+        ],
+      },
+      {
+        day: 3,
+        title: 'Annealing and Normalizing',
+        description:
+          'Explore two fundamental softening processes used to improve machinability, refine grain structure, and relieve internal stresses.',
+        tags: ['Annealing', 'Normalizing', 'Process'],
+        topics: [
+          'Full Annealing vs. Process Annealing',
+          'The purpose and outcome of Normalizing',
+          'Typical temperature ranges and cooling rates',
+          'Resulting microstructures and properties',
+        ],
+      },
+      {
+        day: 4,
+        title: 'Hardening: Quenching and Tempering',
+        description:
+          'Discover the core process for making steel hard. This module covers the transformation to martensite and the critical follow-up step of tempering.',
+        tags: ['Hardening', 'Quenching', 'Tempering'],
+        topics: [
+          'The concept of Austenitizing',
+          'Quenching principles and different quench media (water, oil, air)',
+          'The formation of Martensite',
+          'Why tempering is essential to reduce brittleness',
+        ],
+      },
+      {
+        day: 5,
+        title: 'Basic Hardness & Tensile Testing',
+        description:
+          'Learn how the results of heat treatment are measured. This module introduces the most common methods for testing the mechanical properties of steel.',
+        tags: ['Testing', 'QA', 'Hardness'],
+        topics: [
+          'Introduction to the Rockwell Hardness test (HRC, HRB)',
+          'Overview of the Brinell Hardness test (HBW)',
+          'Basic principles of tensile testing (Yield, Ultimate Tensile Strength)',
+          'Connecting test results to the success of a heat treatment',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'intermediate',
+    title: 'Intermediate Level',
+    description:
+      'Dive deeper into transformation diagrams, hardenability, and common industrial processes.',
+    duration: 'Days 6-10',
+    days: [
+      {
+        day: 6,
+        title: 'TTT and CCT Diagrams',
+        description:
+          'Move beyond the equilibrium phase diagram to understand how time and cooling rate affect steel transformations, predicting the final microstructure.',
+        tags: ['TTT', 'CCT', 'Transformation'],
+        topics: [
+          'Isothermal Transformation (TTT) vs. Continuous Cooling Transformation (CCT)',
+          "Identifying the 'pearlite nose' and 'bainite bay'",
+          'Understanding the Martensite Start (Ms) and Finish (Mf) temperatures',
+          'Using diagrams to predict the outcome of different cooling rates',
+        ],
+      },
+      {
+        day: 7,
+        title: 'Hardenability and the Jominy Test',
+        description:
+          'Explore why some steels can harden deeper than others. This module explains the concept of hardenability and how it is measured.',
+        tags: ['Hardenability', 'Jominy Test', 'Alloying'],
+        topics: [
+          'The difference between hardness and hardenability',
+          'The role of alloying elements (Cr, Mo, Ni) in increasing hardenability',
+          'Procedure and interpretation of the Jominy End-Quench test',
+          'Relating Jominy data to real-world part sections',
+        ],
+      },
+      {
+        day: 8,
+        title: 'Surface Hardening: Carburizing',
+        description:
+          'Learn the most common surface hardening technique, which creates a hard, wear-resistant surface on a tough, low-carbon steel core.',
+        tags: ['Carburizing', 'Case Hardening', 'Process'],
+        topics: [
+          'Principles of carbon diffusion',
+          'Gas, Pack, and Liquid Carburizing methods',
+          'Controlling case depth and surface carbon concentration',
+          'Post-carburizing heat treatment cycles',
+        ],
+      },
+      {
+        day: 9,
+        title: 'Surface Hardening: Nitriding & Carbonitriding',
+        description:
+          'Discover other important case hardening processes that use nitrogen to create extremely hard surfaces with minimal distortion.',
+        tags: ['Nitriding', 'Case Hardening', 'Carbonitriding'],
+        topics: [
+          'Gas vs. Plasma (Ion) Nitriding',
+          'Advantages of nitriding (low temp, low distortion)',
+          'What is Carbonitriding and when is it used?',
+          'Suitable materials for nitriding processes',
+        ],
+      },
+      {
+        day: 10,
+        title: 'Heat Treatment Defects & Causes',
+        description:
+          'An essential module on what can go wrong. Learn to identify, understand, and prevent common heat treatment problems.',
+        tags: ['Defects', 'Troubleshooting', 'QA'],
+        topics: [
+          'Quench Cracking: Causes and prevention',
+          'Distortion and Warpage: How to minimize it',
+          'Soft Spots and Incomplete Hardening',
+          'Surface issues: Decarburization and Scaling',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'advanced',
+    title: 'Advanced Level',
+    description:
+      'Focus on specialized processes, industry standards, and quality control systems for the professional heat treater.',
+    duration: 'Days 11-15',
+    days: [
+      {
+        day: 11,
+        title: 'Advanced Steels: Tool & Stainless',
+        description:
+          'Go beyond plain carbon steels to understand the unique heat treatment requirements of high-alloy tool steels and various families of stainless steel.',
+        tags: ['Tool Steel', 'Stainless Steel', 'Alloying'],
+        topics: [
+          'Classifying tool steels (A, D, H, M, S series)',
+          'Heat treating austenitic, ferritic, and martensitic stainless steels',
+          'The role of complex carbides and retained austenite',
+          'Secondary hardening in high-speed steels',
+        ],
+      },
+      {
+        day: 12,
+        title: 'Furnace Atmospheres & Vacuum Treating',
+        description:
+          'Learn how to protect parts from the environment at high temperatures. This module covers the use of protective atmospheres and vacuum furnaces.',
+        tags: ['Furnaces', 'Atmosphere Control', 'Vacuum'],
+        topics: [
+          'Endothermic and Exothermic gas atmospheres',
+          'Nitrogen-Methanol systems',
+          'Principles of vacuum heat treatment and high-pressure gas quenching',
+          'Carbon potential control',
+        ],
+      },
+      {
+        day: 13,
+        title: 'Pyrometry & AMS 2750',
+        description:
+          'An introduction to the science of temperature measurement and the critical aerospace standard governing it, AMS 2750.',
+        tags: ['Pyrometry', 'AMS 2750', 'Compliance'],
+        topics: [
+          'Thermocouple types, placement, and calibration',
+          'System Accuracy Tests (SAT)',
+          'Temperature Uniformity Surveys (TUS)',
+          'Instrumentation types and requirements',
+        ],
+      },
+      {
+        day: 14,
+        title: 'Quality Systems: Intro to CQI-9',
+        description:
+          'Understand the framework for process control in the automotive heat treat industry. This provides a high-level overview of the CQI-9 Heat Treat System Assessment.',
+        tags: ['CQI-9', 'Quality', 'Audit'],
+        topics: [
+          'The purpose and scope of the CQI-9 assessment',
+          'Key elements: Job Audits, Process Tables',
+          'The importance of process monitoring and documentation',
+          'Moving from detection to prevention of issues',
+        ],
+      },
+      {
+        day: 15,
+        title: 'Process Troubleshooting & Optimization',
+        description:
+          'Apply all the knowledge gained to real-world scenarios. This module focuses on a systematic approach to diagnosing problems and improving heat treat cycles.',
+        tags: ['Troubleshooting', 'Optimization', 'Advanced QA'],
+        topics: [
+          'Using metallography for failure analysis',
+          'Interpreting hardness patterns to diagnose quench issues',
+          'Optimizing cycles for reduced distortion and cost',
+          'Case study: Analyzing a cracked gear',
+        ],
+      },
+    ],
+  },
+];
     
 
     
+
+
+
 
