@@ -105,7 +105,7 @@ export const navItems: NavItem[] = [
     description: "Guides and tools to maintain a safe working environment.",
     children: [
         { href: "/hazard-identification", parent: "industrial-safety", label: "Hazard ID Tool", icon: ListChecks, description: "An interactive checklist to identify and mitigate potential hazards." },
-        { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment." },
+        { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment.", hidden: true },
     ]
   },
     { href: "/fundamental", label: "Fundamental", icon: Atom, description: "Explore fundamental industrial processes and applications." },
@@ -122,9 +122,17 @@ export const navItems: NavItem[] = [
         { href: "/hardness-converter", parent: "calculators", label: "Hardness Converter", icon: Scale, description: "Convert between different hardness scales (e.g., HRC, HV, HB)." },
     ]
   },
-  { href: "/carburizing", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
-  { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
-  { href: "/brazing", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
+  { 
+    href: "/processes", 
+    label: "Process Explanations", 
+    icon: BookOpen,
+    description: "Detailed guides on common heat treatment processes.",
+    children: [
+      { href: "/carburizing", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
+      { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
+      { href: "/brazing", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
+    ]
+  },
   {
     href: "/industrial-tools",
     label: "Tools & References",
@@ -137,16 +145,15 @@ export const navItems: NavItem[] = [
     icon: BadgeCheck,
     description: "Learn about testing, analysis, and compliance in heat treatment.",
   },
-  { href: "/metallurgy-insights", label: "Metallurgy Insights", icon: BarChart, hidden: true },
   {
     href: "/management-system",
     label: "Management System",
     icon: GanttChartSquare,
     description: "Explore the management systems and documentation standards.",
   },
-  { href: "/community", label: "Community Network", icon: Users },
-  { href: "/skill-development", label: "Skill Development", icon: GraduationCap },
-  { href: "/course", label: "Course Program", icon: Book },
+  { href: "/community", label: "Community Network", icon: Users, description: "Connect with heat treatment societies and forums." },
+  { href: "/skill-development", label: "Skill Development", icon: GraduationCap, description: "Curated video tutorials and resources for mastering heat treatment." },
+  { href: "/course", label: "Course Program", icon: Book, description: "A structured 45-day course from beginner to advanced topics." },
   { href: "/pricing", label: "Pricing", icon: CreditCard, hidden: true },
   { href: "/about", label: "About Us", icon: Info },
   { href: "/admin", label: "Admin", icon: ShieldCheck, hidden: true },
