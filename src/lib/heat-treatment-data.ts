@@ -139,7 +139,7 @@ export const navItems: NavItem[] = [
     href: "/industrial-tools",
     label: "Tools & References",
     icon: Briefcase,
-    hidden: true
+    description: "A suite of utilities for heat treatment professionals.",
   },
   {
     href: "/quality-assurance",
