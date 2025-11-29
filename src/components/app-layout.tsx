@@ -222,7 +222,7 @@ function ScrollToTopButton() {
 
     return (
         <Button
-            variant="outline"
+            variant="default"
             size="icon"
             onClick={scrollToTop}
             className={cn(
@@ -316,8 +316,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
                 if (hasChildren) {
                   return (
-                    <SidebarMenuItem key={item.href}>
-                      <Collapsible open={isParentActive}>
+                    <Collapsible key={item.href} asChild>
+                      <SidebarMenuItem>
                         <div className="flex items-center w-full">
                           <Link
                             href={item.href}
@@ -374,8 +374,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                             })}
                           </div>
                         </CollapsibleContent>
-                      </Collapsible>
-                    </SidebarMenuItem>
+                      </SidebarMenuItem>
+                    </Collapsible>
                   );
                 }
 
