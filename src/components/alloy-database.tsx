@@ -68,7 +68,7 @@ export function AlloyDatabase() {
                   <TableCell>{steel.alloyFactor.toFixed(1)}</TableCell>
                   <TableCell className="capitalize">{steel.hardenability}</TableCell>
                   <TableCell className="text-right">
-                    <Button asChild variant="outline" size="sm" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white">
+                    <Button asChild variant="default" size="sm" className="bg-blue-500 text-white hover:bg-blue-600">
                         <Link href={`/calculator?steelGrade=${steel.value}`}>
                             <Calculator className="mr-2 h-4 w-4" />
                             Calculate
