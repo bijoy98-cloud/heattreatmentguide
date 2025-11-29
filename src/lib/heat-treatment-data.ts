@@ -152,7 +152,7 @@ export const navItems: NavItem[] = [
     href: "/management-system",
     label: "Management System",
     icon: GanttChartSquare,
-    hidden: true
+    hidden: false
   },
   { href: "/community", label: "Community Network", icon: Users },
   { href: "/skill-development", label: "Skill Development", icon: GraduationCap },
@@ -2061,7 +2061,8 @@ export const quizQuestions = [
     answer: "To prevent oxidation and decarburization",
   },
   {
-    question: "The iron-carbon phase diagram shows the relationship between temperature, carbon content, and:",
+    question:
+      "The iron-carbon phase diagram shows the relationship between temperature, carbon content, and:",
     options: [
       "Hardness",
       "Toughness",
@@ -2389,3 +2390,5 @@ export const courseLevels = [
     ],
   },
 ];
+
+    
