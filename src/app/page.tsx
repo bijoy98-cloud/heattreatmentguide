@@ -111,7 +111,7 @@ export default function Home() {
                 <p className="max-w-3xl text-lg text-muted-foreground text-justify">
                     Your comprehensive, AI-powered assistant for steel heat treatment. Explore processes, calculate parameters, and get suggestions to perfect your craft.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="pt-4">
                     <HomeClientLinks />
                 </div>
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-4 text-sm text-muted-foreground">
