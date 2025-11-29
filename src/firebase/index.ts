@@ -1,3 +1,4 @@
+
 // This file is the main entry point for all Firebase-related functionality.
 // It initializes Firebase and exports the necessary services and providers.
 
@@ -7,12 +8,12 @@ import { getFirestore, type Firestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration will be populated here.
 const firebaseConfig = {
-  "projectId": "studio-3552309693-2b3cc",
-  "appId": "1:69532037092:web:bfc601a42c8961f4fda1f1",
-  "apiKey": "AIzaSyCunEH21hpPBW20ibMwci5oLC9U-5vnKYs",
-  "authDomain": "studio-3552309693-2b3cc.firebaseapp.com",
-  "storageBucket": "studio-3552309693-2b3cc.appspot.com",
-  "messagingSenderId": "69532037092"
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
 };
 
 type FirebaseServices = {
