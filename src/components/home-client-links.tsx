@@ -8,14 +8,14 @@ import Link from "next/link";
 export function HomeClientLinks() {
   const quickLinks = [
     {
-      href: "/alloy-database",
-      label: "Alloy Database",
-      icon: Database,
-    },
-    {
       href: "/parameter-tool",
       label: "AI-Powered Suggestions",
       icon: Wand2,
+    },
+    {
+      href: "/alloy-database",
+      label: "Alloy Database",
+      icon: Database,
     },
     {
       href: "/processes",
