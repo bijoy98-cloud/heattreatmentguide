@@ -112,7 +112,7 @@ export const navItems: NavItem[] = [
     { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
   {
     href: "/calculators",
-    label: "Heat Treatment Calculators",
+    label: "Heat Treating Calculators",
     icon: Calculator,
     description: "Access our suite of heat treatment calculators.",
      children: [
@@ -530,7 +530,7 @@ export const processesInfo: Process[] = [
     name: "Full Annealing",
     icon: Maximize2,
     description:
-      "The standard annealing process for hypo-eutectoid steels (carbon < 0.77%) to produce a soft, ductile, and coarse pearlitic structure, making the steel easy to machine.",
+      "The standard annealing process for hypo-eutectoid steels (carbon &lt; 0.77%) to produce a soft, ductile, and coarse pearlitic structure, making the steel easy to machine.",
     steps: [
       {
         title: "Heating",
