@@ -30,6 +30,7 @@ import {
   Trash2,
   Settings,
   ArrowUp,
+  ChevronDown,
 } from 'lucide-react';
 import { useFirebase } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -56,6 +57,7 @@ import {
 import { useCart } from '@/hooks/use-cart';
 import { isAdminUser } from '@/lib/auth';
 import { useState, useEffect } from 'react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 
 type Plan = 'Free' | 'Basic' | 'Standard' | 'Premium' | 'Admin';
 
@@ -302,11 +304,54 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 if (item.href === '/admin') {
                     isVisible = isAdmin ?? false;
                 }
+                
+                if (!isVisible) return null;
+                
+                if (item.children) {
+                    return (
+                        <Collapsible key={item.href}>
+                            <CollapsibleTrigger asChild>
+                                <SidebarMenuButton
+                                  className="justify-between w-full"
+                                  tooltip={{ children: item.label }}
+                                >
+                                  <div className='flex items-center gap-2'>
+                                      <item.icon className="shrink-0" />
+                                      <span>{item.label}</span>
+                                  </div>
+                                  <ChevronDown className="h-4 w-4" />
+                                </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                                <div className="pl-4">
+                                  <SidebarMenu>
+                                    {item.children.map((child) => (
+                                      <SidebarMenuItem key={child.href}>
+                                        <Link
+                                          href={child.href}
+                                          className="block w-full"
+                                          onClick={(e) => handleLinkClick(e, child.href)}
+                                        >
+                                          <SidebarMenuButton
+                                            isActive={pathname === child.href}
+                                            className="justify-start w-full"
+                                            tooltip={{ children: child.label }}
+                                          >
+                                            <child.icon className="shrink-0" />
+                                            <span>{child.label}</span>
+                                          </SidebarMenuButton>
+                                        </Link>
+                                      </SidebarMenuItem>
+                                    ))}
+                                  </SidebarMenu>
+                                </div>
+                            </CollapsibleContent>
+                        </Collapsible>
+                    )
+                }
 
                 const requiredPlans = restrictedPaths[item.href];
                 const isRestricted = user && requiredPlans && !requiredPlans.includes(currentPlan);
-
-                if (!isVisible) return null;
 
                 return (
                   <SidebarMenuItem key={item.href}>
