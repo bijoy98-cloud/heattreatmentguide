@@ -290,10 +290,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const allNavItems = navItems.flatMap(item => 
+  const allNavItems = navItems.flatMap(item =>
     item.children ? [item, ...item.children] : [item]
   );
-
 
   return (
     <SidebarProvider>
@@ -301,7 +300,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader></SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {navItems
+            {allNavItems
               .filter((item) => !item.hidden)
               .map((item) => {
                 let isVisible = true;
@@ -344,6 +343,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                           isActive={!isRestricted && pathname === item.href}
                           className={cn(
                             'justify-start w-full',
+                            item.parent && "pl-8",
                             isRestricted &&
                               'text-muted-foreground/50 hover:text-muted-foreground/60'
                           )}
