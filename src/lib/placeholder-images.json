@@ -127,12 +127,6 @@
       "imageHint": "hardness testing"
     },
     {
-      "id": "qna-playlist",
-      "description": "A clean and engaging YouTube-style interface displaying a Q&A (Questions & Answers) Playlist.",
-      "imageUrl": "https://i.ytimg.com/vi/S7a_T8HIH2Y/maxresdefault.jpg",
-      "imageHint": "youtube q&a"
-    },
-    {
       "id": "qms-playlist",
       "description": "A modern, professional YouTube-style interface showcasing a QMS (Quality Management System) playlist.",
       "imageUrl": "https://i.ytimg.com/vi/Lp6iB6h4yVA/maxresdefault.jpg",

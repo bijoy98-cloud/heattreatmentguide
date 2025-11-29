@@ -17,8 +17,7 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle, RefreshCw, HelpCircle, Youtube, Pencil } from "lucide-react";
 import { Progress } from "./ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import Link from "next/link";
 
 
 export const Quiz = forwardRef<HTMLDivElement, {}>((props, ref) => {
@@ -95,7 +94,6 @@ export const Quiz = forwardRef<HTMLDivElement, {}>((props, ref) => {
   }
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
-  const qnaPlaylistImage = PlaceHolderImages.find(img => img.id === 'qna-playlist');
 
   return (
     <div ref={ref} className="space-y-8">
@@ -163,34 +161,24 @@ export const Quiz = forwardRef<HTMLDivElement, {}>((props, ref) => {
         </CardFooter>
       </Card>
       <div className="max-w-2xl mx-auto">
-        <Card>
-            <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                <Youtube className="h-6 w-6 text-primary" />
-                Heat Treatment Q&amp;A Playlist
-                </CardTitle>
-                <CardDescription>
-                Find answers to common questions about heat treatment in this dedicated Q&amp;A video playlist.
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                <a href="https://www.youtube.com/playlist?list=PL2FvUd3wBb6CDCrC7CXbOLzo0iA4RMqqz" target="_blank" rel="noopener noreferrer" className="block relative aspect-video rounded-lg overflow-hidden border hover:shadow-lg transition-shadow">
-                    {qnaPlaylistImage ? (
-                        <Image
-                            src={qnaPlaylistImage.imageUrl}
-                            alt={qnaPlaylistImage.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={qnaPlaylistImage.imageHint}
-                        />
-                    ) : (
-                        <div className="text-sm text-center text-primary font-semibold p-4 border border-dashed rounded-lg hover:bg-muted h-full flex items-center justify-center">
-                            Go to Q&amp;A Playlist
-                        </div>
-                    )}
-                </a>
-            </CardContent>
-        </Card>
+        <Link href="https://www.youtube.com/playlist?list=PL2FvUd3wBb6CDCrC7CXbOLzo0iA4RMqqz" target="_blank" rel="noopener noreferrer" className="block">
+          <Card className="hover:shadow-lg transition-shadow hover:bg-muted/50">
+              <CardHeader>
+                  <CardTitle className="flex items-center gap-3">
+                  <Youtube className="h-6 w-6 text-primary" />
+                  Heat Treatment Q&amp;A Playlist
+                  </CardTitle>
+                  <CardDescription>
+                  Find answers to common questions about heat treatment in this dedicated Q&amp;A video playlist.
+                  </CardDescription>
+              </CardHeader>
+              <CardContent>
+                  <Button variant="outline" className="w-full">
+                    Go to Q&amp;A Playlist
+                  </Button>
+              </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );
