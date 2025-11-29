@@ -67,13 +67,13 @@ export default function AboutPage() {
         </div>
 
         <Tabs defaultValue="about-us" className="w-full">
-          <TabsList className="h-auto justify-start flex-wrap">
-            <TabsTrigger value="about-us" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">About Us</TabsTrigger>
-            <TabsTrigger value="user-manual" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">User Manual</TabsTrigger>
-            <TabsTrigger value="terms" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">Terms of Service</TabsTrigger>
-            <TabsTrigger value="privacy" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">Privacy Policy</TabsTrigger>
-            <TabsTrigger value="cancellation" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">Cancellation</TabsTrigger>
-            <TabsTrigger value="contact" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">Contact Us</TabsTrigger>
+          <TabsList className="h-auto justify-start flex-wrap bg-blue-500 text-white">
+            <TabsTrigger value="about-us" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">About Us</TabsTrigger>
+            <TabsTrigger value="user-manual" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">User Manual</TabsTrigger>
+            <TabsTrigger value="terms" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Terms of Service</TabsTrigger>
+            <TabsTrigger value="privacy" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Privacy Policy</TabsTrigger>
+            <TabsTrigger value="cancellation" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Cancellation</TabsTrigger>
+            <TabsTrigger value="contact" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Contact Us</TabsTrigger>
           </TabsList>
 
           <TabsContent value="about-us">
