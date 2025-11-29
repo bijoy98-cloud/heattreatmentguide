@@ -11,12 +11,12 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 
-export const AnalyzeMicrostructureInputSchema = z.object({
+const AnalyzeMicrostructureInputSchema = z.object({
   photoDataUri: z.string().describe("A data URI of a micrograph image of a polished and etched steel sample. Expected format: 'data:<mimetype>;base64,<encoded_data>'."),
 });
 export type AnalyzeMicrostructureInput = z.infer<typeof AnalyzeMicrostructureInputSchema>;
 
-export const AnalyzeMicrostructureOutputSchema = z.object({
+const AnalyzeMicrostructureOutputSchema = z.object({
   phaseComposition: z.object({
     martensite: z.number().describe('Percentage of martensite in the microstructure.'),
     ferrite: z.number().describe('Percentage of ferrite in the microstructure.'),
