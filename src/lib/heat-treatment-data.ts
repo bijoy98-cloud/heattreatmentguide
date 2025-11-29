@@ -108,13 +108,7 @@ export const navItems: NavItem[] = [
         { href: "/ppe-guide", parent: "industrial-safety", label: "PPE Guide", icon: Glasses, description: "An interactive guide to essential Personal Protective Equipment." },
     ]
   },
-  {
-    href: "/fundamental",
-    label: "Fundamental",
-    icon: Atom,
-    description: "Explore the core concepts of metallurgy.",
-    children: []
-  },
+    { href: "/fundamental", label: "Fundamental", icon: Atom, description: "Explore fundamental industrial processes and applications." },
     { href: "/alloy-database", label: "Alloy Database", icon: Database, description: "A searchable database of common steel alloys." },
     { href: "/glossary", label: "Glossary of Terms", icon: List, description: "A searchable glossary of common terms." },
   {
@@ -122,23 +116,15 @@ export const navItems: NavItem[] = [
     label: "Calculators",
     icon: Calculator,
     description: "Access our suite of heat treatment calculators.",
-    children: [
+     children: [
         { href: "/calculator", parent: "calculators", label: "Process Parameter", icon: Calculator, description: "Rule-based calculator for process parameters." },
         { href: "/hardness-calculator", parent: "calculators", label: "Hardness Calculator", icon: Bot, description: "AI-powered calculator for hardness-based processes." },
         { href: "/hardness-converter", parent: "calculators", label: "Hardness Converter", icon: Scale, description: "Convert between different hardness scales (e.g., HRC, HV, HB)." },
     ]
   },
-  { 
-    href: "/processes", 
-    label: "Process Explanations", 
-    icon: BookOpen,
-    description: "Detailed guides on common heat treatment processes.",
-    children: [
-        { href: "/carburizing", parent: "processes", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
-        { href: "/plasma-nitriding", parent: "processes", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
-        { href: "/brazing", parent: "processes", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
-    ]
-  },
+  { href: "/carburizing", label: "Carburising Process", icon: Layers, description: "An in-depth guide to the steel carburizing process." },
+  { href: "/plasma-nitriding", label: "Nitriding Processes", icon: Component, description: "Explore plasma and gas nitriding for surface hardening." },
+  { href: "/brazing", label: "Brazing Process", icon: Link, description: "Learn the principles of joining metals with a filler material." },
   {
     href: "/industrial-tools",
     label: "Tools & References",
