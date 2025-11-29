@@ -290,6 +290,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const allNavItems = navItems.flatMap(item => 
+    item.children ? [item, ...item.children] : [item]
+  );
+
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -299,59 +304,17 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             {navItems
               .filter((item) => !item.hidden)
               .map((item) => {
-                
                 let isVisible = true;
                 if (item.href === '/admin') {
-                    isVisible = isAdmin ?? false;
+                  isVisible = isAdmin ?? false;
                 }
-                
                 if (!isVisible) return null;
-                
-                if (item.children) {
-                    return (
-                        <Collapsible key={item.href}>
-                            <CollapsibleTrigger asChild>
-                                <SidebarMenuButton
-                                  className="justify-between w-full"
-                                  tooltip={{ children: item.label }}
-                                >
-                                  <div className='flex items-center gap-2'>
-                                      <item.icon className="shrink-0" />
-                                      <span>{item.label}</span>
-                                  </div>
-                                  <ChevronDown className="h-4 w-4" />
-                                </SidebarMenuButton>
-                            </CollapsibleTrigger>
-                            <CollapsibleContent>
-                                <div className="pl-4">
-                                  <SidebarMenu>
-                                    {item.children.map((child) => (
-                                      <SidebarMenuItem key={child.href}>
-                                        <Link
-                                          href={child.href}
-                                          className="block w-full"
-                                          onClick={(e) => handleLinkClick(e, child.href)}
-                                        >
-                                          <SidebarMenuButton
-                                            isActive={pathname === child.href}
-                                            className="justify-start w-full"
-                                            tooltip={{ children: child.label }}
-                                          >
-                                            <child.icon className="shrink-0" />
-                                            <span>{child.label}</span>
-                                          </SidebarMenuButton>
-                                        </Link>
-                                      </SidebarMenuItem>
-                                    ))}
-                                  </SidebarMenu>
-                                </div>
-                            </CollapsibleContent>
-                        </Collapsible>
-                    )
-                }
 
                 const requiredPlans = restrictedPaths[item.href];
-                const isRestricted = user && requiredPlans && !requiredPlans.includes(currentPlan);
+                const isRestricted =
+                  user &&
+                  requiredPlans &&
+                  !requiredPlans.includes(currentPlan);
 
                 return (
                   <SidebarMenuItem key={item.href}>
@@ -375,21 +338,22 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                       <Link
                         href={item.href}
                         className="block w-full"
-                        onClick={(e) => {
-                           handleLinkClick(e, item.href);
-                        }}
+                        onClick={(e) => handleLinkClick(e, item.href)}
                       >
                         <SidebarMenuButton
                           isActive={!isRestricted && pathname === item.href}
                           className={cn(
-                            "justify-start w-full",
-                            isRestricted && "text-muted-foreground/50 hover:text-muted-foreground/60"
+                            'justify-start w-full',
+                            isRestricted &&
+                              'text-muted-foreground/50 hover:text-muted-foreground/60'
                           )}
                           tooltip={{ children: item.label }}
                         >
                           <item.icon className="shrink-0" />
                           <span>{item.label}</span>
-                          {isRestricted && <Lock className="ml-auto h-3 w-3" />}
+                          {isRestricted && (
+                            <Lock className="ml-auto h-3 w-3" />
+                          )}
                         </SidebarMenuButton>
                       </Link>
                     )}
