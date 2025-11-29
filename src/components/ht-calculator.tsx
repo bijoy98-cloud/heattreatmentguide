@@ -243,7 +243,7 @@ function ParameterCalculator() {
           <div className="space-y-2">
             <Label htmlFor="steel-grade">Steel Grade</Label>
             <Select value={steelGrade} onValueChange={setSteelGrade}>
-              <SelectTrigger id="steel-grade">
+              <SelectTrigger id="steel-grade" className="bg-primary/10">
                 <SelectValue placeholder="Select steel grade" />
               </SelectTrigger>
               <SelectContent>
