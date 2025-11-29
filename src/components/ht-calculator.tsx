@@ -271,7 +271,7 @@ function ParameterCalculator() {
           <div className="space-y-2">
             <Label htmlFor="process">Heat Treatment Process</Label>
             <Select value={process} onValueChange={setProcess}>
-              <SelectTrigger id="process">
+              <SelectTrigger id="process" className="bg-primary/10">
                 <SelectValue placeholder="Select process" />
               </SelectTrigger>
               <SelectContent>
