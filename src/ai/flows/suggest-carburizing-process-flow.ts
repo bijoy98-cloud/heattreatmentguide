@@ -84,6 +84,7 @@ const suggestCarburizingProcessFlow = ai.defineFlow(
 
       1.  **Analyze Material:** Use the 'getCarburizingSteelProperties' tool to get the steel's properties.
       2.  **Determine Parameters:**
+          -   **Preheating:** Always include a preheating step at 650°C.
           -   **Carburizing Temperature:** Usually around 925°C, but can be adjusted. State the chosen temperature.
           -   **Soaking Time:** Calculate the required soaking time. A common formula is Time (hr) = (Case Depth (mm) / K)^2, where K is a factor (approx 0.5 for gas carburizing at 925°C). Adjust this time based on the steel's carburizing factor.
           -   **Quenching Temperature:** Decide whether to quench directly from carburizing temp or to use a lower temperature (e.g., 840°C) to refine the grain structure. State the chosen temperature.
@@ -92,10 +93,10 @@ const suggestCarburizingProcessFlow = ai.defineFlow(
           - A recommendation for a post-quench cold treatment if applicable (e.g., "Follow with sub-zero treatment at -75°C for 2 hours to minimize retained austenite").
           - A specific tempering temperature and duration to achieve the target surface hardness (e.g., "Temper at 150-200°C for 2 hours").
           - A note about controlling carbon potential in the furnace atmosphere.
-      4.  **Generate Graph Data:** Create a realistic time-temperature graph for the *entire* cycle (Ramp -> Soak -> Cool to Quench Temp -> Quench).
+      4.  **Generate Graph Data:** Create a realistic time-temperature graph for the *entire* cycle (Ramp to Preheat -> Preheat Soak -> Ramp to Carburize -> Carburizing Soak -> Cool to Quench Temp -> Quench).
           - The graph must start at room temperature (25°C).
-          - Include points for each phase: ramp up, carburizing soak, cooling to quench temp (if applicable), and the quench itself.
-          - Be realistic with ramps. A ramp from 25°C to 925°C takes time (e.g., 2 hours). A quench is very fast (e.g., 0.1 hours).
+          - Include points for each phase: ramp up to preheat, preheat soak, ramp to carburize, carburizing soak, cooling to quench temp (if applicable), and the quench itself.
+          - Be realistic with ramps. A ramp from 25°C to 650°C takes time (e.g., 1.5 hours), as does the ramp from 650°C to 925°C (e.g., 1 hour). A quench is very fast (e.g., 0.1 hours).
 
       Your final output must strictly adhere to the JSON schema.
       `,
