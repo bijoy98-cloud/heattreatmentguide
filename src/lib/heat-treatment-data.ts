@@ -2254,7 +2254,7 @@ export const courseLevels = [
         tags: ['TTT', 'CCT', 'Transformation'],
         topics: [
           'Isothermal Transformation (TTT) vs. Continuous Cooling Transformation (CCT)',
-          'Identifying the pearlite nose and bainite bay',
+          'Identifying the \'pearlite nose\' and \'bainite bay\'',
           'Understanding the Martensite Start (Ms) and Finish (Mf) temperatures',
           'Using diagrams to predict the outcome of different cooling rates',
         ],
@@ -2388,11 +2388,4 @@ export const courseLevels = [
     ],
   },
 ];
-    "
-    
-    
-
-    
-    
-
 "
