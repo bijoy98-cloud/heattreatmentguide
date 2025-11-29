@@ -7,12 +7,12 @@ import { getFirestore, type Firestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration will be populated here.
 const firebaseConfig = {
-  "projectId": "heat-treatment-28136645-e6858",
-  "appId": "1:990510434436:web:132a2d04941377797d9ad1",
-  "apiKey": "AIzaSyAHKNzRBXWKX-XKe08DcKCPtWxHavA8JjM",
-  "authDomain": "heat-treatment-28136645-e6858.firebaseapp.com",
-  "storageBucket": "heat-treatment-28136645-e6858.appspot.com",
-  "messagingSenderId": "990510434436"
+  "projectId": "studio-3552309693-2b3cc",
+  "appId": "1:69532037092:web:bfc601a42c8961f4fda1f1",
+  "apiKey": "AIzaSyCunEH21hpPBW20ibMwci5oLC9U-5vnKYs",
+  "authDomain": "studio-3552309693-2b3cc.firebaseapp.com",
+  "storageBucket": "studio-3552309693-2b3cc.appspot.com",
+  "messagingSenderId": "69532037092"
 };
 
 type FirebaseServices = {
