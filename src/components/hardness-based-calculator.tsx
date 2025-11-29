@@ -272,7 +272,7 @@ export function HardnessBasedCalculator() {
               <div className="space-y-2">
                   <Label htmlFor="ai-steel-grade">Steel Grade</Label>
                   <Select name="steelType" required>
-                      <SelectTrigger id="ai-steel-grade" className="bg-primary/10">
+                      <SelectTrigger id="ai-steel-grade">
                           <SelectValue placeholder="Select steel grade" />
                       </SelectTrigger>
                       <SelectContent>
@@ -295,14 +295,13 @@ export function HardnessBasedCalculator() {
                       step="0.1"
                       placeholder="e.g., 1.5"
                       required
-                      className="bg-primary/10"
                   />
                   {state.errors?.partThickness && <p className="text-sm text-destructive">{state.errors.partThickness[0]}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="ai-process">Heat Treatment Process</Label>
                 <Select name="process" required>
-                    <SelectTrigger id="ai-process" className="bg-primary/10">
+                    <SelectTrigger id="ai-process">
                         <SelectValue placeholder="Select process" />
                     </SelectTrigger>
                     <SelectContent>
@@ -322,7 +321,6 @@ export function HardnessBasedCalculator() {
                       name="requiredProperties"
                       placeholder="e.g., 58 HRC, or 'soft and machinable'"
                       required
-                      className="bg-primary/10"
                   />
                   {state.errors?.requiredProperties && <p className="text-sm text-destructive">{state.errors.requiredProperties[0]}</p>}
               </div>

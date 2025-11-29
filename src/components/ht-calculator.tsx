@@ -243,7 +243,7 @@ function ParameterCalculator() {
           <div className="space-y-2">
             <Label htmlFor="steel-grade">Steel Grade</Label>
             <Select value={steelGrade} onValueChange={setSteelGrade}>
-              <SelectTrigger id="steel-grade" className="bg-primary/10">
+              <SelectTrigger id="steel-grade">
                 <SelectValue placeholder="Select steel grade" />
               </SelectTrigger>
               <SelectContent>
@@ -264,14 +264,13 @@ function ParameterCalculator() {
               value={partThickness}
               onChange={(e) => setPartThickness(e.target.value)}
               placeholder="e.g., 1.5"
-              className="bg-primary/10"
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="process">Heat Treatment Process</Label>
             <Select value={process} onValueChange={setProcess}>
-              <SelectTrigger id="process" className="bg-primary/10">
+              <SelectTrigger id="process">
                 <SelectValue placeholder="Select process" />
               </SelectTrigger>
               <SelectContent>

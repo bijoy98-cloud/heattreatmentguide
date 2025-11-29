@@ -401,7 +401,7 @@ export function Carburizing() {
                 <div className="space-y-2">
                   <Label htmlFor="steelType">Carburizing Alloy</Label>
                   <Select name="steelType" required>
-                    <SelectTrigger id="steelType" className="bg-blue-100">
+                    <SelectTrigger id="steelType">
                       <SelectValue placeholder="Select alloy" />
                     </SelectTrigger>
                     <SelectContent>

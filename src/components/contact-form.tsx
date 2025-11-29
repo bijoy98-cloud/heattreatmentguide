@@ -60,7 +60,6 @@ export function ContactForm() {
           placeholder="John Doe"
           {...register('name')}
           disabled={isSubmitting}
-          className="bg-primary/10"
         />
         {errors.name && (
           <p className="text-sm text-destructive">{errors.name.message}</p>
@@ -74,7 +73,6 @@ export function ContactForm() {
           placeholder="john.doe@example.com"
           {...register('email')}
           disabled={isSubmitting}
-          className="bg-primary/10"
         />
         {errors.email && (
           <p className="text-sm text-destructive">{errors.email.message}</p>
@@ -88,7 +86,6 @@ export function ContactForm() {
           rows={5}
           {...register('message')}
           disabled={isSubmitting}
-          className="bg-primary/10"
         />
         {errors.message && (
           <p className="text-sm text-destructive">{errors.message.message}</p>
