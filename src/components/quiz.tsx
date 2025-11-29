@@ -166,15 +166,15 @@ export const Quiz = forwardRef<HTMLDivElement, {}>((props, ref) => {
               <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                   <Youtube className="h-6 w-6 text-primary" />
-                  Heat Treatment Q&amp;A Playlist
+                  Heat Treatment Q&A Playlist
                   </CardTitle>
                   <CardDescription>
-                  Find answers to common questions about heat treatment in this dedicated Q&amp;A video playlist.
+                  Find answers to common questions about heat treatment in this dedicated Q&A video playlist.
                   </CardDescription>
               </CardHeader>
               <CardContent>
-                  <Button variant="outline" className="w-full">
-                    Go to Q&amp;A Playlist
+                  <Button className="w-full bg-blue-500 text-white hover:bg-blue-600">
+                    Go to Q&A Playlist
                   </Button>
               </CardContent>
           </Card>
