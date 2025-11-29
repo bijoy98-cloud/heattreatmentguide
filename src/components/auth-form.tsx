@@ -9,7 +9,6 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  fetchSignInMethodsForEmail,
 } from 'firebase/auth';
 import { useFirebase } from '@/firebase';
 import { Button } from '@/components/ui/button';
@@ -62,25 +61,33 @@ export function AuthForm() {
 
     setIsSubmitting(true);
     try {
-      // Check if the email already exists
-      const methods = await fetchSignInMethodsForEmail(auth, email);
-
-      if (methods.length > 0) {
-        // Email exists, so sign in
-        await signInWithEmailAndPassword(auth, email, password);
-        toast({ title: 'Successfully signed in.' });
-      } else {
-        // Email does not exist, so create a new account
-        await createUserWithEmailAndPassword(auth, email, password);
-        toast({ title: 'Account created successfully.' });
-      }
+      // First, try to sign in. If it fails, it might be because the user doesn't exist.
+      await signInWithEmailAndPassword(auth, email, password);
+      toast({ title: 'Successfully signed in.' });
       router.push(redirect);
-    } catch (error: any) {
-      toast({
-        variant: 'destructive',
-        title: 'Authentication Failed',
-        description: error.message,
-      });
+    } catch (signInError: any) {
+      // If sign-in fails because the user is not found, try creating an account.
+      if (signInError.code === 'auth/user-not-found' || signInError.code === 'auth/invalid-credential') {
+        try {
+          await createUserWithEmailAndPassword(auth, email, password);
+          toast({ title: 'Account created successfully.' });
+          router.push(redirect);
+        } catch (signUpError: any) {
+          // Handle specific sign-up errors, like weak password.
+          toast({
+            variant: 'destructive',
+            title: 'Sign-Up Failed',
+            description: signUpError.message,
+          });
+        }
+      } else {
+        // Handle other sign-in errors (e.g., wrong password).
+        toast({
+          variant: 'destructive',
+          title: 'Authentication Failed',
+          description: signInError.message,
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
