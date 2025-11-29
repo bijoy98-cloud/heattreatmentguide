@@ -31,6 +31,7 @@ import {
   Settings,
   ArrowUp,
   ChevronDown,
+  Briefcase,
 } from 'lucide-react';
 import { useFirebase } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -137,21 +138,6 @@ function UserProfileButton() {
             </p>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-            <DropdownMenuItem asChild>
-              <Link href="/pricing">
-                <CreditCard className="mr-2 h-4 w-4" />
-                <span>Pricing Plans</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/checkout">
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                <span>My Orders</span>
-              </Link>
-            </DropdownMenuItem>
-        </DropdownMenuGroup>
         
         <DropdownMenuSeparator />
         
@@ -169,6 +155,30 @@ function UserProfileButton() {
                 <span>Change Password</span>
               </Link>
             </DropdownMenuItem>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Subscription</DropdownMenuLabel>
+          <DropdownMenuItem asChild>
+            <Link href="/pricing">
+              <CreditCard className="mr-2 h-4 w-4" />
+              <span>Pricing Plans</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/checkout">
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              <span>My Orders</span>
+            </Link>
+          </DropdownMenuItem>
+           <DropdownMenuItem asChild>
+            <Link href="/billing">
+              <Briefcase className="mr-2 h-4 w-4" />
+              <span>Manage Billing</span>
+            </Link>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         
         <DropdownMenuSeparator />
