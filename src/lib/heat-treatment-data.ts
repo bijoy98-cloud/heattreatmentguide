@@ -168,6 +168,35 @@ export const processesInfo: Process[] = [
     ],
   },
   {
+    id: "hardening",
+    name: "Hardening",
+    icon: Zap,
+    description:
+      "A process to increase the hardness of steel by heating it to the austenitizing temperature, and then rapidly cooling (quenching) it to form a very hard microstructure called martensite.",
+    steps: [
+      {
+        title: "Austenitizing",
+        description:
+          "Heat the steel to a temperature where its crystal structure transforms to austenite.",
+      },
+      {
+        title: "Soaking",
+        description:
+          "Hold the steel at the austenitizing temperature to ensure the entire part is uniformly heated and transformed.",
+      },
+      {
+        title: "Quenching",
+        description:
+          "Cool the steel rapidly in a medium like water, oil, or air to trap the carbon atoms and form hard martensite.",
+      },
+      {
+        title: "Tempering",
+        description:
+          "Reheat the hardened steel to a lower temperature to reduce brittleness and increase toughness.",
+      },
+    ],
+  },
+  {
     id: "ausforming",
     name: "Ausforming (Thermomechanical Treatment)",
     icon: Hammer,
@@ -2112,3 +2141,4 @@ export const brazingData = [
     
 
     
+
