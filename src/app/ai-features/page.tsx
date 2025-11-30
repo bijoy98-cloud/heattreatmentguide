@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { navItems } from "@/lib/heat-treatment-data";
 import Link from "next/link";
 import { Cpu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function AIFeaturesPage() {
   // Find the AI Features parent item to get its children
@@ -33,11 +34,21 @@ export default function AIFeaturesPage() {
             Explore Our AI Tools
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
-            {aiFeatures.map((feature) => (
-              <Link key={feature.href} href={feature.href} className="block h-full">
-                <Card className="group h-full transition-all duration-300 hover:border-primary hover:shadow-lg hover:shadow-primary/10">
-                  <CardHeader className="flex flex-row items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+            {aiFeatures.map((feature) => {
+              const isDisabled = feature.href === '/image-analyzer';
+
+              const cardContent = (
+                <Card className={cn(
+                  "group h-full",
+                  isDisabled 
+                    ? "bg-muted/50 cursor-not-allowed" 
+                    : "transition-all duration-300 hover:border-primary hover:shadow-lg hover:shadow-primary/10"
+                )}>
+                  <CardHeader className={cn("flex flex-row items-start gap-4", isDisabled && "opacity-50")}>
+                    <div className={cn(
+                      "flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary",
+                      !isDisabled && "transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
+                    )}>
                         <feature.icon className="h-6 w-6" />
                     </div>
                     <div className="flex-grow">
@@ -45,11 +56,24 @@ export default function AIFeaturesPage() {
                       <CardDescription className="mt-2 text-justify">
                         {feature.description || `Explore ${feature.label.toLowerCase()} and expand your knowledge.`}
                       </CardDescription>
+                      {isDisabled && (
+                        <div className="mt-2 text-sm font-semibold text-destructive">Temporarily Disabled</div>
+                      )}
                     </div>
                   </CardHeader>
                 </Card>
-              </Link>
-            ))}
+              );
+
+              if (isDisabled) {
+                return <div key={feature.href}>{cardContent}</div>;
+              }
+
+              return (
+                <Link key={feature.href} href={feature.href} className="block h-full">
+                  {cardContent}
+                </Link>
+              );
+            })}
           </div>
         </section>
       </div>
