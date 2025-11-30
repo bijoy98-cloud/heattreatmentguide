@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -28,12 +29,6 @@ export type GenerateVideoSummaryOutput = z.infer<
   typeof GenerateVideoSummaryOutputSchema
 >;
 
-export async function generateVideoSummary(
-  input: GenerateVideoSummaryInput
-): Promise<GenerateVideoSummaryOutput> {
-  return generateVideoSummaryFlow(input);
-}
-
 const prompt = ai.definePrompt({
   name: 'generateVideoSummaryPrompt',
   input: {schema: GenerateVideoSummaryInputSchema},
@@ -57,3 +52,9 @@ const generateVideoSummaryFlow = ai.defineFlow(
     return output!;
   }
 );
+
+export async function generateVideoSummary(
+  input: GenerateVideoSummaryInput
+): Promise<GenerateVideoSummaryOutput> {
+  return generateVideoSummaryFlow(input);
+}
