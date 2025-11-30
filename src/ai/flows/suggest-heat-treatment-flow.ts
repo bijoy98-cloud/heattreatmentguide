@@ -11,13 +11,13 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 
-export const SuggestHeatTreatmentInputSchema = z.object({
+const SuggestHeatTreatmentInputSchema = z.object({
   steelType: z.string().describe('The type of steel being used, e.g., "A2 Tool Steel" or "1095 High Carbon".'),
   desiredProperties: z.string().describe("The desired mechanical properties, e.g., 'High hardness for wear resistance' or 'Increased ductility for forming'."),
 });
 export type SuggestHeatTreatmentInput = z.infer<typeof SuggestHeatTreatmentInputSchema>;
 
-export const SuggestHeatTreatmentOutputSchema = z.object({
+const SuggestHeatTreatmentOutputSchema = z.object({
     heatTreatment: z.string().describe('The recommended heat treatment process (e.g., "Quench and Temper", "Annealing").'),
     temperatureRange: z.string().describe('The recommended temperature range for the primary step (e.g., "820-860°C").'),
     duration: z.string().describe('The recommended soaking time (e.g., "30-60 minutes").'),
