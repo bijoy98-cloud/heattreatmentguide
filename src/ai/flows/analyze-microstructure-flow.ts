@@ -47,6 +47,7 @@ const analyzeMicrostructureFlow = ai.defineFlow(
 
       Image to analyze: {{media url=photoDataUri}}
       `,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       output: {
         schema: AnalyzeMicrostructureOutputSchema,
       },

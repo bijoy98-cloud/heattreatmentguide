@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -42,12 +43,6 @@ export type RecommendHeatTreatmentParametersOutput = z.infer<
   typeof RecommendHeatTreatmentParametersOutputSchema
 >;
 
-export async function recommendHeatTreatmentParameters(
-  input: RecommendHeatTreatmentParametersInput
-): Promise<RecommendHeatTreatmentParametersOutput> {
-  return recommendHeatTreatmentParametersFlow(input);
-}
-
 const recommendHeatTreatmentParametersFlow = ai.defineFlow(
   {
     name: 'recommendHeatTreatmentParametersFlow',
@@ -69,6 +64,7 @@ Based on this information, provide the following:
 - Soaking Time: The recommended soaking time at the specified temperature.
 - Cooling Method: The recommended cooling method after soaking.
 - Expected Result: The expected result of the heat treatment process on the material properties.`,
+        model: ai.getModel('googleai/gemini-2.5-flash'),
         output: {
             schema: RecommendHeatTreatmentParametersOutputSchema,
         }
@@ -76,3 +72,10 @@ Based on this information, provide the following:
     return output!;
   }
 );
+
+
+export async function recommendHeatTreatmentParameters(
+  input: RecommendHeatTreatmentParametersInput
+): Promise<RecommendHeatTreatmentParametersOutput> {
+  return recommendHeatTreatmentParametersFlow(input);
+}

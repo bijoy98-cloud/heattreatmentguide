@@ -1,9 +1,11 @@
+
 // src/app/api/suggest-treatment/route.ts (or .js)
 // IMPORTANT: Make sure there is NO "use server"; at the top of this file
 // if this is intended as a standard Next.js App Router API route.
 
 import { NextResponse } from 'next/server';
-import { suggestHeatTreatment, SuggestHeatTreatmentInput } from '@/ai/flows/suggest-heat-treatment-flow';
+import { suggestHeatTreatment } from '@/ai/flows/suggest-heat-treatment-flow';
+import type { SuggestHeatTreatmentInput } from '@/ai/flows/suggest-heat-treatment-flow';
 import { z } from 'zod';
 
 const RequestBodySchema = z.object({
@@ -58,9 +60,3 @@ export async function POST(req: Request) {
     
   }
 }
-
-// If you have other exports like `runtime` or `config` in this file,
-// and you also have "use server" at the top, they will cause this error.
-// For example, if you have:
-// export const runtime = 'edge'; // This is an object/string, not an async function
-// This would conflict with "use server" in a server action module context.

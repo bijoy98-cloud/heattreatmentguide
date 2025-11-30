@@ -103,6 +103,7 @@ const recommendProcessFlow = ai.defineFlow(
       - *Process Logic:* 4140 is an oil-hardening steel. To get 50 HRC, I need to harden and then temper. Hardening temp will be ~850°C. Soak for ~1 hr/inch. Quench in oil. Tempering temp for 50 HRC is around 425°C. Temper soak for ~2hr.
       - *Graph Logic:* Start at (0, 25). Ramp to 850°C over 1.5h -> (1.5, 850). Soak for 1h -> (2.5, 850). Quench to 60°C in 0.1h -> (2.6, 60). Then a separate tempering cycle can be shown or integrated. For this task, create one continuous graph if possible, showing a cool down, then ramp to temper temp. So, after quench at (2.6, 60), cool to room temp -> (3.6, 25). Ramp to temper temp 425°C in 1h -> (4.6, 425). Soak 2h -> (6.6, 425). Air cool to 25°C in 1h -> (7.6, 25).
       `,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       tools: [getSteelProperties],
       output: {
         schema: RecommendProcessOutputSchema,

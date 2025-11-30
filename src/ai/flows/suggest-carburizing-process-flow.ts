@@ -100,6 +100,7 @@ const suggestCarburizingProcessFlow = ai.defineFlow(
 
       Your final output must strictly adhere to the JSON schema.
       `,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       tools: [getCarburizingSteelProperties],
       output: {
         schema: SuggestCarburizingProcessOutputSchema,

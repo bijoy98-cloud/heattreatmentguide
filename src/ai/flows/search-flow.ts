@@ -79,6 +79,7 @@ const searchFlow = ai.defineFlow(
       Provide up to 5 results.
 
       User query: "${input.query}"`,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       tools: [searchNavItems],
       output: {
         schema: SearchOutputSchema,

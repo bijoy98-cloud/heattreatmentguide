@@ -39,6 +39,7 @@ const diagnoseFaultFlow = ai.defineFlow(
 
       Your response should be structured to directly identify root causes and provide clear, actionable solutions.
       `,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       output: {
         schema: DiagnoseFaultOutputSchema,
       },

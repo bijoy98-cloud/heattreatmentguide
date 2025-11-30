@@ -39,6 +39,7 @@ const suggestHeatTreatmentFlow = ai.defineFlow(
 
       Your response should be concise and directly answer the user's need.
       `,
+      model: ai.getModel('googleai/gemini-2.5-flash'),
       output: {
         schema: SuggestHeatTreatmentOutputSchema,
       },

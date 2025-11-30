@@ -10,12 +10,13 @@ import { recommendHeatTreatmentParameters } from '@/ai/flows/recommend-heat-trea
 import { Loader2, Wand2, Thermometer, Timer, Wind, CheckCircle } from 'lucide-react';
 import { AppLayout } from '@/components/app-layout';
 
-const initialState = {
+const initialState: Awaited<ReturnType<typeof recommendHeatTreatmentParameters>> = {
   temperatureRange: '',
   soakingTime: '',
   coolingMethod: '',
   expectedResult: '',
 };
+
 
 function SubmitButton() {
   const { pending } = useFormStatus();
