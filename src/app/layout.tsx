@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from "@/firebase";
 import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
