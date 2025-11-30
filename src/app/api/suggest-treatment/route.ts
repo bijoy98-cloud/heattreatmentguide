@@ -1,7 +1,13 @@
+// src/app/api/suggest-treatment/route.ts
 
-// src/app/api/suggest-treatment/route.ts (or .js)
-// IMPORTANT: Make sure there is NO "use server"; at the top of this file
-// if this is intended as a standard Next.js App Router API route.
+// *************************************************************************************************
+// CRITICAL FIX: ENSURE THESE TWO POINTS ARE ADDRESSED:
+// 1. DELETE THIS LINE IF IT'S PRESENT: "use server";
+//    (Next.js App Router API Routes like this one are server-side by default and do NOT need it.)
+// 2. ENSURE THERE ARE NO OTHER `export` STATEMENTS IN THIS FILE THAT ARE NOT `async function`s.
+//    (e.g., remove `export const runtime = 'edge';`, `export const dynamic = 'force-dynamic';`, etc.,
+//     if they are present AND you also have "use server"; somewhere, or if they are causing issues.)
+// *************************************************************************************************
 
 import { NextResponse } from 'next/server';
 import { suggestHeatTreatment } from '@/ai/flows/suggest-heat-treatment-flow';
@@ -10,7 +16,7 @@ import { z } from 'zod';
 
 const RequestBodySchema = z.object({
     steelType: z.string().min(1, "Steel type is required."),
-    desiredProperties: z.string().min(1, "Desired properties are required."),
+    desiredProperties: z.string().min(1, "Desired properties is required."),
 });
 
 export async function POST(req: Request) {
@@ -18,7 +24,6 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch (error) {
-    // Log the actual error for debugging, but return a generic message to the client
     console.error('Error parsing request body JSON:', error);
     return NextResponse.json({ message: 'Invalid JSON body' }, { status: 400 });
   }
@@ -38,9 +43,7 @@ export async function POST(req: Request) {
   try {
     const aiResponse = await suggestHeatTreatment(parsed.data);
     
-    // Ensure aiResponse and heatTreatment are valid before proceeding
     if (!aiResponse || typeof aiResponse.heatTreatment !== 'string' || aiResponse.heatTreatment.trim() === '') {
-      // You might want to log the AI response for debugging in the server logs
       console.error('AI generated an invalid or empty heatTreatment:', aiResponse);
       return NextResponse.json(
         { message: 'AI failed to generate a valid suggestion. Please adjust your inputs.' },
@@ -51,7 +54,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Success', data: aiResponse });
 
   } catch (error) {
-    console.error('AI Suggestion Error:', error); // Keep detailed error for server logs
+    console.error('AI Suggestion Error:', error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
     return NextResponse.json(
       { message: `An error occurred while generating the suggestion: ${errorMessage}` },
