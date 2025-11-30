@@ -11,12 +11,12 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 
-export const DiagnoseFaultInputSchema = z.object({
+const DiagnoseFaultInputSchema = z.object({
   symptoms: z.string().describe('A detailed description of the observed heat treatment fault or problem.'),
 });
 export type DiagnoseFaultInput = z.infer<typeof DiagnoseFaultInputSchema>;
 
-export const DiagnoseFaultOutputSchema = z.object({
+const DiagnoseFaultOutputSchema = z.object({
     possibleCauses: z.array(z.string()).describe('A list of the most likely root causes for the described symptoms.'),
     correctiveActions: z.array(z.string()).describe('A list of actionable steps to take to correct the issue and prevent it from recurring.'),
 });
