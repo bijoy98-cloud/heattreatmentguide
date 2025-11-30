@@ -30,15 +30,16 @@ const AnalyzeMicrostructureOutputSchema = z.object({
 });
 export type AnalyzeMicrostructureOutput = z.infer<typeof AnalyzeMicrostructureOutputSchema>;
 
-const analyzeMicrostructureFlow = ai.defineFlow(
-  {
-    name: 'analyzeMicrostructureFlow',
-    inputSchema: AnalyzeMicrostructureInputSchema,
-    outputSchema: AnalyzeMicrostructureOutputSchema,
-  },
-  async (input) => {
-    const llmResponse = await ai.generate({
-      prompt: `You are an expert metallurgist specializing in the analysis of steel microstructures. You will be given a micrograph image.
+export async function analyzeMicrostructure(input: AnalyzeMicrostructureInput): Promise<AnalyzeMicrostructureOutput> {
+  const analyzeMicrostructureFlow = ai.defineFlow(
+    {
+      name: 'analyzeMicrostructureFlow',
+      inputSchema: AnalyzeMicrostructureInputSchema,
+      outputSchema: AnalyzeMicrostructureOutputSchema,
+    },
+    async (input) => {
+      const llmResponse = await ai.generate({
+        prompt: `You are an expert metallurgist specializing in the analysis of steel microstructures. You will be given a micrograph image.
 
       Analyze the provided image and perform the following tasks:
       1.  **Phase Composition**: Identify and estimate the percentage of each visible metallurgical phase (martensite, ferrite, pearlite, bainite, retained austenite, carbides). Ensure the total percentage adds up to 100. If a phase is not present, its value should be 0.
@@ -47,16 +48,14 @@ const analyzeMicrostructureFlow = ai.defineFlow(
 
       Image to analyze: {{media url=photoDataUri}}
       `,
-      model: ai.getModel('googleai/gemini-2.5-flash'),
-      output: {
-        schema: AnalyzeMicrostructureOutputSchema,
-      },
-    });
+        model: ai.getModel('googleai/gemini-2.5-flash'),
+        output: {
+          schema: AnalyzeMicrostructureOutputSchema,
+        },
+      });
 
-    return llmResponse.output!;
-  }
-);
-
-export async function analyzeMicrostructure(input: AnalyzeMicrostructureInput): Promise<AnalyzeMicrostructureOutput> {
+      return llmResponse.output!;
+    }
+  );
   return analyzeMicrostructureFlow(input);
 }
