@@ -30,30 +30,12 @@ export function AuthForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const { auth } = useFirebase();
   const { toast } = useToast();
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get('redirect') || '/';
-
-  const handleGoogleSignIn = async () => {
-    if (!auth) return;
-    setIsSubmitting(true);
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      toast({ title: 'Successfully signed in with Google.' });
-      router.push(redirect);
-    } catch (error: any) {
-      toast({
-        variant: 'destructive',
-        title: 'Google Sign-In Failed',
-        description: error.message,
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,31 +43,19 @@ export function AuthForm() {
 
     setIsSubmitting(true);
     try {
-      // First, try to sign in. If it fails, it might be because the user doesn't exist.
-      await signInWithEmailAndPassword(auth, email, password);
-      toast({ title: 'Successfully signed in.' });
-      router.push(redirect);
-    } catch (signInError: any) {
-      // If sign-in fails because the user is not found, try creating an account.
-      if (signInError.code === 'auth/user-not-found' || signInError.code === 'auth/invalid-credential') {
-        try {
-          await createUserWithEmailAndPassword(auth, email, password);
-          toast({ title: 'Account created successfully.' });
-          router.push(redirect);
-        } catch (signUpError: any) {
-          // Handle specific sign-up errors, like weak password.
-          toast({
-            variant: 'destructive',
-            title: 'Sign-Up Failed',
-            description: signUpError.message,
-          });
-        }
+      if (isSignUp) {
+        await createUserWithEmailAndPassword(auth, email, password);
+        toast({ title: 'Account created successfully.' });
       } else {
-        // Handle other sign-in errors (e.g., wrong password).
+        await signInWithEmailAndPassword(auth, email, password);
+        toast({ title: 'Successfully signed in.' });
+      }
+      router.push(redirect);
+    } catch (error: any) { {
         toast({
           variant: 'destructive',
           title: 'Authentication Failed',
-          description: signInError.message,
+          description: error.message,
         });
       }
     } finally {
@@ -96,9 +66,9 @@ export function AuthForm() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle className="text-2xl">Login or Create Account</CardTitle>
+        <CardTitle className="text-2xl">{isSignUp ? 'Create an Account' : 'Welcome Back'}</CardTitle>
         <CardDescription>
-          Enter your email and password below to login or sign up.
+          Enter your email and password to {isSignUp ? 'sign up' : 'log in'}.
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleEmailAuth}>
@@ -133,12 +103,17 @@ export function AuthForm() {
             ) : (
               <LogIn className="mr-2 h-4 w-4" />
             )}
-            Sign In / Sign Up
+            {isSignUp ? 'Create Account' : 'Login'}
           </Button>
         </CardContent>
       </form>
       <CardFooter className="flex flex-col gap-4">
-        
+        <div className="text-center text-sm">
+          {isSignUp ? 'Already have an account?' : "Don't have an account?"}
+          <Button variant="link" onClick={() => setIsSignUp(!isSignUp)} className="px-2">
+            {isSignUp ? 'Login' : 'Sign up'}
+          </Button>
+        </div>
         <p className="px-8 text-center text-sm text-muted-foreground">
             <Link
                 href="/"
