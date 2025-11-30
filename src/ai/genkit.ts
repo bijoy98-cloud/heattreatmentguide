@@ -8,6 +8,6 @@ genkit({
 });
 
 // Now that Genkit is configured, the 'ai' object is available to use.
-const geminiPro = googleAI.model('gemini-pro');
+const geminiPro = ai.getModel('googleai/gemini-pro');
 
 export {ai, geminiPro};
