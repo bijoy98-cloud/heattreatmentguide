@@ -1,6 +1,6 @@
 
 import {genkit, ai} from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
+import {googleAI} from '@genkit-ai/google-genai';
 
 // Correctly initialize Genkit with plugins first.
 genkit({
@@ -8,6 +8,6 @@ genkit({
 });
 
 // Now that Genkit is configured, the 'ai' object is available to use.
-ai.registerModel('googleai/gemini-2.5-flash', googleAI({version: '2.5-flash'}));
+const geminiPro = googleAI.model('gemini-pro');
 
-export {ai};
+export {ai, geminiPro};
