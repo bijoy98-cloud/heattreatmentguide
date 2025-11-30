@@ -48,25 +48,6 @@ export async function recommendHeatTreatmentParameters(
   return recommendHeatTreatmentParametersFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'recommendHeatTreatmentParametersPrompt',
-  input: {schema: RecommendHeatTreatmentParametersInputSchema},
-  output: {schema: RecommendHeatTreatmentParametersOutputSchema},
-  prompt: `You are an expert metallurgist specializing in heat treatment processes.
-
-You will use the provided material composition and desired properties to recommend optimal heat treatment parameters, including temperature ranges, soaking times, and cooling methods.
-
-Material Composition: {{{materialComposition}}}
-Desired Properties: {{{desiredProperties}}}
-
-Based on this information, provide the following:
-
-- Temperature Range: The recommended temperature range for the heat treatment process.
-- Soaking Time: The recommended soaking time at the specified temperature.
-- Cooling Method: The recommended cooling method after soaking.
-- Expected Result: The expected result of the heat treatment process on the material properties.`,
-});
-
 const recommendHeatTreatmentParametersFlow = ai.defineFlow(
   {
     name: 'recommendHeatTreatmentParametersFlow',
@@ -74,7 +55,24 @@ const recommendHeatTreatmentParametersFlow = ai.defineFlow(
     outputSchema: RecommendHeatTreatmentParametersOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
+    const {output} = await ai.generate({
+        prompt: `You are an expert metallurgist specializing in heat treatment processes.
+
+You will use the provided material composition and desired properties to recommend optimal heat treatment parameters, including temperature ranges, soaking times, and cooling methods.
+
+Material Composition: ${input.materialComposition}
+Desired Properties: ${input.desiredProperties}
+
+Based on this information, provide the following:
+
+- Temperature Range: The recommended temperature range for the heat treatment process.
+- Soaking Time: The recommended soaking time at the specified temperature.
+- Cooling Method: The recommended cooling method after soaking.
+- Expected Result: The expected result of the heat treatment process on the material properties.`,
+        output: {
+            schema: RecommendHeatTreatmentParametersOutputSchema,
+        }
+    });
     return output!;
   }
 );
