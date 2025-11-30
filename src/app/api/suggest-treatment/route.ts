@@ -1,12 +1,3 @@
-// src/app/api/suggest-treatment/route.ts
-
-// *************************************************************************************************
-// FIXED: Next.js App Router API Route
-// 1. Removed `"use server"` (not needed for server-side API routes)
-// 2. Only exporting an async function (POST)
-// 3. Added robust error handling and validation
-// *************************************************************************************************
-
 import { NextResponse } from 'next/server';
 import { suggestHeatTreatment } from '@/ai/flows/suggest-heat-treatment-flow';
 import type { SuggestHeatTreatmentInput } from '@/ai/flows/suggest-heat-treatment-flow';
