@@ -442,7 +442,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <UserProfileButton />
           </div>
         </header>
-        <div className={cn("flex min-h-[calc(100vh-4rem-1px)] flex-col", currentPlan === 'Free' && 'free-user-no-copy')}>
+        <div className="flex min-h-[calc(100vh-4rem-1px)] flex-col">
           <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
           <footer className="p-4 text-center text-xs text-muted-foreground">
             <Link href="/" className="hover:underline">
